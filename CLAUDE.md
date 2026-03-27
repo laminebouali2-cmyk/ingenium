@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # CLAUDE.md -- Projet Ingenium
 
 ## IMPORTANT -- Niveau attendu
@@ -14,8 +16,7 @@ Consultant digital : Lamine Bouali (GTM Engineer, expert Next.js/SEO/CRO).
 ## L'opportunite business
 - Le maitre d'oeuvre prend ~10% d'honoraires sur le cout des travaux avec quasi-zero couts fixes
 - Sur un projet a 250K EUR = 25K EUR d'honoraires. ROI marketing de 7x a 17x.
-- Le creneau "MOE premium construction neuve" est quasi-vide a Toulouse
-- 118 MOE references mais la majorite font de la reno, pas du neuf
+- Le creneau "MOE premium construction neuve" a Toulouse : peu de vrais concurrents premium
 - 90% des concurrents ont des sites mediocres = avantage enorme pour un site premium
 - La Haute-Garonne fait +13,9% de mises en chantier pendant que la France fait -32%
 
@@ -37,7 +38,6 @@ AVANT de coder quoi que ce soit, lire ces documents :
 - `~/.claude/docs/ingenium-research.md` -- Recherche marche complete (ICP, keywords, concurrents, prix, terrain, parcours client, donnees ads)
 - `~/.claude/docs/ingenium-brief-sergiu.md` -- Brief client (reponses de Sergiu)
 - `~/.claude/docs/seo-bible.md` -- Bible SEO complete (67Ko, reference pour toute decision SEO)
-- `~/.claude/projects/C--Users-Lamine/memory/project_ingenium.md` -- Fiche projet avec tout le contexte
 
 ## Stack technique
 - Next.js (App Router, derniere version)
@@ -92,20 +92,29 @@ AVANT de coder quoi que ce soit, lire ces documents :
 - Urgence douce : "X familles nous ont contacte ce mois"
 - Reponse aux objections principales dans le contenu (budget, delais, qualite, garanties)
 
-## Concurrents principaux a surpasser
-- Grand Construction (grand-construction.fr) -- premium mais zero temoignages, blog mort, pas mobile
-- Archymade (maisons-archymade.fr) -- 8 modeles, calculateur prix, bon SEO mais peu de preuve sociale
-- Mani Concept (maniconcept.fr) -- "villas de prestige", concurrent direct positionnement premium
-- Maisons Terre d'Oc -- 312 avis Google (CCMI, pas MOE)
-- Artisans Reno -- 401 avis, 6000 projets (renovation, pas neuf)
+## Messaging -- Ce que le site doit communiquer
+- Objection "budget" -> transparence tarifaire, devis detailles, pas de surprise
+- Objection "delais" -> planning precis, engagement contractuel, penalites retard
+- Objection "qualite" -> artisans references, controle qualite, photos reelles
+- Objection "confiance" -> assurances (decennale, RC pro), avis clients, experience
+- Argument MOE vs CCMI -> libre choix artisans, plans sur-mesure, transparence couts, souvent moins cher
+- L'avantage Ingenium -> deal fournisseur (prix bas), accompagnement bancaire, bonus client (piscine ou autre)
 
-## Architecture de pages (previsionnel)
+## Concurrents principaux (analyses dans ingenium-research.md)
+- Grand Construction (grand-construction.fr) -- "constructeur specialiste maisons premium et sur-mesure"
+- Archymade (maisons-archymade.fr) -- "Constructeur de maison a Toulouse - Villa de luxe"
+- Mani Concept (maniconcept.fr) -- "villas de prestige", concurrent direct positionnement premium
+- Artisans Reno -- 421 avis Google, position 1 sur beaucoup de requetes
+- Le Coin des Artisans -- MOE Haute-Garonne + Occitanie
+- Maisons Terre d'Oc -- 312 avis (CCMI, concurrent indirect)
+
+## Architecture de pages
 ```
-/ -- Accueil (hero + modeles + temoignages + CTA)
+/ -- Accueil (hero + modeles + processus + temoignages + CTA)
 /maitre-oeuvre-toulouse -- Page pilier MOE
 /construction-maison-[ville] -- Pages ville (Castanet, Ramonville, Labege, Muret, etc.)
 /modeles -- Catalogue des modeles
-/modeles/[nom-modele] -- Page detail de chaque modele (plans, 3D, prix, options)
+/modeles/[nom-modele] -- Page detail (plans, 3D, prix, options)
 /realisations -- Portfolio projets
 /realisations/[slug] -- Detail projet (storytelling avant/apres)
 /processus -- Les etapes de A a Z (rassurer)
@@ -117,8 +126,24 @@ AVANT de coder quoi que ce soit, lire ces documents :
 /devis-gratuit -- Landing page conversion
 ```
 
+## Composants reutilises depuis EGB Occitanie
+- `Reveal.tsx` + `lib/animations.ts` -- systeme d'animations (fadeUp, fadeIn, slideIn, mask, stagger)
+- `SmoothScroll.tsx` -- scroll fluide
+- `MagneticButton.tsx` -- bouton avec effet magnetique
+- `FilmGrain.tsx` -- texture visuelle premium
+- `StickyCallButton.tsx` -- bouton d'appel fixe en bas (conversions)
+- `PageBreadcrumb.tsx` -- fil d'Ariane SEO
+
+## IA Agentique et SEO -- Outils disponibles
+- MCP servers installes (scope user, dispo dans toutes les sessions) :
+  - Playwright : crawl de sites, screenshots, audits SEO automatises
+  - Fetch : lecture de pages web
+  - Filesystem : gestion fichiers
+  - Semrush : donnees SEO (keywords, concurrents, backlinks) -- authentifier au premier lancement
+- Bible SEO complete dans ~/.claude/docs/seo-bible.md (67Ko, 19 chapitres)
+
 ## Regles de code
-- Composants dans /components, pages dans /app
+- Composants dans /src/components, pages dans /src/app
 - Un composant = un fichier
 - Nommage : PascalCase composants, kebab-case fichiers
 - Pas de "use client" sauf si absolument necessaire (interactivite)
@@ -126,43 +151,19 @@ AVANT de coder quoi que ce soit, lire ces documents :
 - Pas de dependances inutiles
 - Commenter uniquement le code non-evident
 
-## Messaging -- Ce que le site doit communiquer
-- Objection "budget" -> transparence tarifaire, devis detailles, pas de surprise
-- Objection "delais" -> planning precis, engagement contractuel, penalites retard
-- Objection "qualite" -> artisans references, controle qualite, photos reelles
-- Objection "confiance" -> assurances (decennale, RC pro), avis clients, experience
-- Argument MOE vs CCMI -> libre choix artisans, plans sur-mesure, transparence couts, souvent moins cher
-- L'avantage Ingenium -> deal fournisseur (prix bas), accompagnement bancaire, bonus client (piscine ou autre)
-
-## IA Agentique et SEO -- Comment on travaille
-- MCP servers installes (scope user, dispo dans toutes les sessions) :
-  - Playwright : crawl de sites, screenshots, audits SEO automatises
-  - Fetch : lecture de pages web
-  - Filesystem : gestion fichiers
-  - Semrush : donnees SEO (keywords, concurrents, backlinks) -- a authentifier au premier lancement
-- Utiliser les sub-agents pour les taches paralleles (recherche, audit, contenu)
-- Claude Agent SDK (Python/TypeScript) pour l'orchestration programmatique si besoin
-- ChatSEO (29 EUR/mois) pour l'analyse GSC conversationnelle
-- Bible SEO complete dans ~/.claude/docs/seo-bible.md (67Ko, 19 chapitres)
-- Checklist SEO 80/20 : GBP 100%, categories, avis, posts, citations, NAP, backlinks locaux, schema, geo-grid
-
-## Workflow de developpement
-- Repo GitHub : a configurer (Lamine gere)
-- Deploy : Vercel (preview sur chaque push)
+## Workflow
+- Repo GitHub (Lamine cree et push)
+- Deploy Vercel (preview sur chaque push)
 - Git : commits frequents, messages clairs en francais
-- Pas de "use client" sauf si interactivite necessaire
-- Un composant = un fichier
-- PascalCase composants, kebab-case fichiers
-- Pas de console.log en production
-- Pas de dependances inutiles
 
 ## Statut actuel
 - [x] Recherche marche complete (ICP, keywords, concurrents, prix, terrain, ads)
 - [x] CLAUDE.md et docs de reference remplis
 - [x] Next.js + Tailwind + Framer Motion installes
+- [x] Composants EGB reutilisables copies
 - [ ] Brief Sergiu (reponses en attente -- commencer SANS bloquer sur les details)
-- [ ] Design system (palette, typo, composants de base)
 - [ ] Homepage
+- [ ] Design system (palette, typo, composants de base)
 - [ ] Pages service + ville
 - [ ] Page modeles
 - [ ] Page processus
