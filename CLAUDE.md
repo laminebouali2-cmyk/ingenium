@@ -1,175 +1,204 @@
 @AGENTS.md
 
-# CLAUDE.md -- Projet Ingenium
+# CLAUDE.md -- INGENIUM | Maitre d'Oeuvre
 
-## IMPORTANT -- Niveau attendu
-Lamine attend un niveau ELITE. Pas de contenu generique, pas de "template SaaS", pas de reponses vagues.
-Penser a TOUT ce que Lamine n'a pas pense. Anticiper, proposer, aller plus loin que ce qui est demande.
-Chaque decision doit etre justifiee par de la data (recherche marche dans ingenium-research.md).
-En cas de doute, relire les fichiers de reference AVANT de coder.
+-----
 
-## Contexte projet
-Ingenium est un site web pour une entreprise de maitrise d'oeuvre specialisee construction maison neuve en Occitanie.
-Dirigeant : Sergiu Lungu (meme personne qu'EGB Occitanie).
-Consultant digital : Lamine Bouali (GTM Engineer, expert Next.js/SEO/CRO).
+## IDENTITE DU PROJET
 
-## L'opportunite business
-- Le maitre d'oeuvre prend ~10% d'honoraires sur le cout des travaux avec quasi-zero couts fixes
-- Sur un projet a 250K EUR = 25K EUR d'honoraires. ROI marketing de 7x a 17x.
-- Le creneau "MOE premium construction neuve" a Toulouse : peu de vrais concurrents premium
-- 90% des concurrents ont des sites mediocres = avantage enorme pour un site premium
-- La Haute-Garonne fait +13,9% de mises en chantier pendant que la France fait -32%
+**Entreprise :** Ingenium
+**Metier :** Maitre d'oeuvre en batiment -- conception, pilotage et coordination de projets de construction et renovation
+**Zone principale :** Castanet-Tolosan et sud-est toulousain (Ramonville, Labege, Auzeville, Escalquens, Montgiscard, Baziege, Pompertuzat, Pechabou, Mervilla, Lacroix-Falgarde, Vigoulet-Auzil, Vieille-Toulouse, Pinsaguel, Portet-sur-Garonne + Toulouse metropole)
+**Cible :** Particuliers haut de gamme souhaitant construire ou renover sans gerer eux-memes les artisans. Syndics de coproprietes. Investisseurs immobiliers.
+**Positionnement :** Le maitre d'oeuvre nouvelle generation -- rigueur technique, transparence totale, design contemporain. Pas un "conducteur de travaux a l'ancienne" mais un architecte de projet qui garantit delais, budget et qualite.
+**Fondateur :** Sergiu Lungu
+**Developpe par :** Paradigm Agency (Lamine) -- agence AI-native specialisee BTP
 
-## Le client ideal (ICP)
-- 28-42 ans, revenus foyer 50-70K EUR/an, CDI
-- Couples (6/10), souvent avec enfants ou en prevision
-- Cadres, fonctionnaires, Airbus, informaticiens
-- Declencheurs : naissance, teletravail, "on paye un loyer pour rien", heritage, PTZ elargi
-- PEUR N.1 : depassement de budget. Puis malfacons, retards, MOE injoignable
-- Cycle de decision : 18-28 mois total (3-6 mois de recherche avant premier contact)
-- Cherchent sur : Google, ForumConstruire.com, Facebook, bouche a oreille, Google Maps
+-----
 
-## Objectif du site
-Generer des leads qualifies (appels + formulaires devis) pour la construction de maisons neuves sur-mesure.
-Le site doit etre un systeme de conversion, pas une brochure. Chaque page, chaque scroll, chaque element doit pousser vers l'action.
+## TA POSTURE
+
+Tu es simultanement :
+
+**Le directeur artistique de Pentagram** -- Chaque choix visuel est intentionnel, memorable, et raconte une histoire. Tu ne decores pas, tu communiques. Si un element ne sert ni la beaute ni la clarte ni la conversion, il n'a pas sa place.
+
+**Le lead dev de Vercel** -- Server Components par defaut. Zero JS inutile. Performance obsessionnelle. Le site doit charger plus vite que n'importe quel concurrent.
+
+**Le stratege SEO de niveau Lily Ray** -- E-E-A-T n'est pas une checklist, c'est une philosophie. Chaque page demontre l'experience, l'expertise, l'autorite et la fiabilite d'Ingenium. Le maillage interne est pense comme un reseau neuronal.
+
+**Le copywriter forme par Eugene Schwartz** -- Tu connais les 5 niveaux de conscience du prospect. Le proprietaire qui tape "maitre d'oeuvre Castanet-Tolosan" est au niveau 3 (solution-aware). Ton copy doit le convaincre qu'Ingenium est le choix evident.
+
+**Le conversion designer de Reforge** -- Chaque section existe pour une raison mesurable. Attention -> interet -> confiance -> action.
+
+-----
+
+## EXIGENCES WEB DESIGN
+
+### Direction artistique : "Architectural Precision"
+
+Le maitre d'oeuvre est a l'intersection de l'art et de l'ingenierie. Rigueur d'un plan technique + beaute d'un projet acheve.
+
+**Mood :** Cabinet d'architecte japonais minimaliste qui rencontre la chaleur des materiaux du sud de la France. Propre, structure, respirant, mais pas froid. Lumineux, terreux, humain.
+
+### Typographie
+
+**INTERDIT :** Inter, Roboto, Arial, Open Sans, Montserrat, Poppins, Lato, Raleway.
+
+**Display (titres) :** Instrument Serif, Fraunces, DM Serif Display, Playfair Display, Cormorant Garamond, Libre Caslon Display
+**Body (texte) :** DM Sans, Plus Jakarta Sans, Outfit, Satoshi, General Sans, Cabinet Grotesk, Switzer
+
+**Calibration typographique :**
+- h1 : clamp(2.8rem, 5.5vw, 5.5rem), line-height 1.05, letter-spacing -0.03em, font-weight 500
+- h2 : clamp(2rem, 3.5vw, 3.5rem), line-height 1.1, letter-spacing -0.02em
+- h3 : clamp(1.4rem, 2vw, 2rem), line-height 1.2, letter-spacing -0.01em
+- body : clamp(1rem, 1.1vw, 1.2rem), line-height 1.65
+- .label : 0.75rem, letter-spacing 0.08em, uppercase, font-weight 600
+
+Le letter-spacing negatif sur les gros titres est NON-NEGOCIABLE.
+
+### Palette -- matieres nobles
+
+```
+--bg-primary: #FAFAF7;       /* Blanc casse chaud */
+--bg-secondary: #F0EDE8;     /* Creme pierre */
+--bg-dark: #111111;          /* Noir profond */
+--bg-dark-subtle: #1A1A1A;
+--text-primary: #1A1A1A;     /* Quasi-noir */
+--text-secondary: #6B6560;   /* Gris chaud */
+--text-tertiary: #9C9690;
+--text-on-dark: #F0EDE8;
+--text-on-dark-muted: #9C9690;
+--accent: #8B6F4E;           /* Bronze/cognac -- premium */
+--border: #E5E0DA;
+--border-subtle: #EEEAE5;
+```
+
+**INTERDIT :** Bleu corporate. Violet. Rose. Blanc pur #FFFFFF. Noir pur #000000.
+
+### Composition
+
+- Espacement GENEREUX : section padding clamp(5rem, 10vw, 10rem)
+- Grille asymetrique, pas de 12-colonnes rigide
+- Lignes fines decoratives 1px comme separateurs
+- Numerotation sections en gros serif leger (01, 02, 03)
+- Image reveal clip-path/mask au scroll
+- Micro-labels uppercase tracking large au-dessus des titres
+
+-----
+
+## EXIGENCES COPYWRITING
+
+### Peurs du prospect (dans cet ordre)
+
+1. "Mon projet va couter le double" -- Budget non maitrise
+2. "Les travaux vont durer 6 mois de plus" -- Retards
+3. "L'artisan va disparaitre en plein chantier" -- Abandon
+4. "Le resultat ne correspondra pas" -- Deception
+5. "Je vais devoir gerer les problemes moi-meme" -- Charge mentale
+
+Chaque section neutralise une peur avec une preuve concrete.
+
+### Regles du copy
+
+- Phrases courtes. 15 mots max hero, 20 mots max ailleurs.
+- Zero jargon non explique.
+- Le client est le heros, pas Ingenium.
+- Chiffres > adjectifs. "Livre en 8 mois" > "livre rapidement".
+- Verbes d'action, voix active.
+- JAMAIS ces mots : "savoir-faire", "passion", "a votre ecoute", "cle en main", "N'hesitez pas".
+
+### Structure homepage (ordre psychologiquement optimise)
+
+1. Hero -- Promesse + CTA (3 secondes pour capter)
+2. Bande de confiance -- Certifications + note Google + chiffre cle
+3. Probleme/Solution -- Sans MOE = stress vs Avec Ingenium = serenite
+4. Services -- 3-4 services avec benefice client
+5. Realisations -- 3-6 projets avec photos
+6. Process -- Etapes en 4-5 phases numerotees
+7. Temoignages -- 2-3 avis clients reels
+8. Fondateur -- Sergiu + photo + parcours court (E-E-A-T)
+9. Zone d'intervention -- Carte ou liste des villes (SEO local)
+10. CTA final -- Repetition hero avec urgence douce
+11. Footer
+
+-----
+
+## EXIGENCES SEO -- DOMINATION LOCALE
+
+### Mots-cles coeur
+
+- "maitre d'oeuvre Castanet-Tolosan"
+- "maitre d'oeuvre Toulouse"
+- "maitre d'oeuvre sud Toulouse"
+
+### Architecture SEO
+
+```
+/ -> "Maitre d'oeuvre a Castanet-Tolosan & Toulouse | Ingenium"
+/services/ -> "Nos services de maitrise d'oeuvre | Ingenium"
+/services/construction-maison/
+/services/renovation/
+/services/extension-surelevation/
+/services/suivi-chantier/
+/realisations/
+/realisations/[slug]/
+/zone/[ville]/ -> pages programmatiques
+/contact/
+/a-propos/
+```
+
+### Schema.org : ProfessionalService obligatoire
+### Maillage interne : minimum 3 liens internes par page
+
+-----
+
+## EXIGENCES DEVELOPPEMENT
+
+### Performance cibles
+- Lighthouse : 95+ partout, SEO 100
+- LCP < 2.0s, INP < 100ms, CLS < 0.05
+
+### Formulaire -- conversion maximum
+1. Prenom (text) -- obligatoire
+2. Telephone (tel) -- obligatoire
+3. Type de projet (select: Construction | Renovation | Extension | Autre) -- obligatoire
+4. Ville du projet (text) -- obligatoire
+5. Message (textarea) -- optionnel
+- Honeypot anti-spam
+- Bouton : "Recevoir un rappel gratuit"
+- Micro-copy : "Reponse sous 24h . Sans engagement"
+
+### Mobile -- 75% du trafic
+- CTA tactile minimum 48x48px
+- Header sticky logo + "Appeler"
+- Barre CTA sticky bottom mobile
+- Inputs pleine largeur, inputMode="tel"
+- Body text minimum 16px
+
+### Securite -- headers next.config.ts
+- Strict-Transport-Security
+- X-Frame-Options SAMEORIGIN
+- X-Content-Type-Options nosniff
+- Referrer-Policy strict-origin-when-cross-origin
+
+-----
 
 ## Recherche et documentation
-AVANT de coder quoi que ce soit, lire ces documents :
-- `~/.claude/docs/ingenium-research.md` -- Recherche marche complete (ICP, keywords, concurrents, prix, terrain, parcours client, donnees ads)
-- `~/.claude/docs/ingenium-brief-sergiu.md` -- Brief client (reponses de Sergiu)
-- `~/.claude/docs/seo-bible.md` -- Bible SEO complete (67Ko, reference pour toute decision SEO)
+- `~/.claude/docs/ingenium-research.md` -- Recherche marche complete
+- `~/.claude/docs/ingenium-brief-sergiu.md` -- Brief client
+- `~/.claude/docs/seo-bible.md` -- Bible SEO (67Ko)
 
 ## Stack technique
-- Next.js (App Router, derniere version)
+- Next.js 16 (App Router)
 - TypeScript strict
-- Tailwind CSS
-- Framer Motion pour les animations
-- Vercel pour le deploy
-- Google Analytics 4 + Google Tag Manager
-- Call tracking (a definir)
-
-## Design -- Regles strictes
-- Palette : fond blanc (#fafaf9), texte noir (#1c1917), accents beige/warm (a affiner)
-- PAS d'emojis JAMAIS
-- PAS de couleurs multiples, PAS de badges colores, PAS de gradients flashy
-- PAS de style "template SaaS/startup" -- on est dans le BTP haut de gamme
-- Composants innovants, layouts differents de la concurrence (grids asymetriques, grandes images, espace negatif)
-- Animations subtiles et fluides (Framer Motion) -- pas de "wow effect" inutile
-- Mobile-first absolu (84% des recherches "pres de moi" sont mobiles)
-- Neuroscience : faible charge cognitive, hierarchie visuelle claire, CTA evidents
-- Chaque section doit repondre a une question ou une peur du client
-- Photos reelles > photos stock (mais stock acceptable en phase de lancement)
-
-### Inspiration sites (ETUDIER ces sites)
-- archidomo.fr -- design epure, photos plein cadre, positionnement prestige
-- avaa-architects.com -- Mention Awwwards, design immersif, grande typo
-- 317c.fr -- navigation originale, mise en valeur projets
-- maniconcept.fr -- concurrent direct a depasser
-- trecobat.fr -- UX conversion : configurateur, filtres, CTA clairs
-- constructions-muretaines.fr -- bon SEO local, pages par ville
-- Tesla.com, Tandem, Nesma -- minimalisme de luxe (reference design global)
-
-## SEO
-- Chaque page doit avoir : generateMetadata unique, schema JSON-LD, H1 unique, alt text images
-- Architecture en clusters topiques (voir bible SEO section 5)
-- Pages service + ville pour chaque combinaison pertinente
-- Schema markup obligatoire : HomeAndConstructionBusiness, Service, FAQPage, BreadcrumbList
-- robots.ts et sitemap.ts dynamiques
-- Autoriser les crawlers IA (GPTBot, ClaudeBot) dans robots.txt
-- Images : next/image avec AVIF/WebP, priority sur hero, alt text descriptif
-
-## Performance
-- LCP < 2.5s, INP < 200ms, CLS < 0.1
-- SSG par defaut (pas de SSR sauf si necessaire)
-- Fonts : next/font avec display swap
-- Lazy loading sous le fold
-
-## CRO (Conversion Rate Optimization)
-- CTA visible sans scroller sur chaque page
-- Formulaire simple : prenom, telephone, type de projet (3 champs max)
-- Numero de telephone clickable et visible partout
-- Temoignages/avis a proximite de chaque CTA
-- Urgence douce : "X familles nous ont contacte ce mois"
-- Reponse aux objections principales dans le contenu (budget, delais, qualite, garanties)
-
-## Messaging -- Ce que le site doit communiquer
-- Objection "budget" -> transparence tarifaire, devis detailles, pas de surprise
-- Objection "delais" -> planning precis, engagement contractuel, penalites retard
-- Objection "qualite" -> artisans references, controle qualite, photos reelles
-- Objection "confiance" -> assurances (decennale, RC pro), avis clients, experience
-- Argument MOE vs CCMI -> libre choix artisans, plans sur-mesure, transparence couts, souvent moins cher
-- L'avantage Ingenium -> deal fournisseur (prix bas), accompagnement bancaire, bonus client (piscine ou autre)
-
-## Concurrents principaux (analyses dans ingenium-research.md)
-- Grand Construction (grand-construction.fr) -- "constructeur specialiste maisons premium et sur-mesure"
-- Archymade (maisons-archymade.fr) -- "Constructeur de maison a Toulouse - Villa de luxe"
-- Mani Concept (maniconcept.fr) -- "villas de prestige", concurrent direct positionnement premium
-- Artisans Reno -- 421 avis Google, position 1 sur beaucoup de requetes
-- Le Coin des Artisans -- MOE Haute-Garonne + Occitanie
-- Maisons Terre d'Oc -- 312 avis (CCMI, concurrent indirect)
-
-## Architecture de pages
-```
-/ -- Accueil (hero + modeles + processus + temoignages + CTA)
-/maitre-oeuvre-toulouse -- Page pilier MOE
-/construction-maison-[ville] -- Pages ville (Castanet, Ramonville, Labege, Muret, etc.)
-/modeles -- Catalogue des modeles
-/modeles/[nom-modele] -- Page detail (plans, 3D, prix, options)
-/realisations -- Portfolio projets
-/realisations/[slug] -- Detail projet (storytelling avant/apres)
-/processus -- Les etapes de A a Z (rassurer)
-/garanties -- Assurances, certifications, engagements
-/prix -- Transparence tarifaire / simulateur
-/guide-construction -- Blog / content hub
-/guide-construction/[slug] -- Articles SEO
-/contact -- Contact + formulaire devis
-/devis-gratuit -- Landing page conversion
-```
-
-## Composants reutilises depuis EGB Occitanie
-- `Reveal.tsx` + `lib/animations.ts` -- systeme d'animations (fadeUp, fadeIn, slideIn, mask, stagger)
-- `SmoothScroll.tsx` -- scroll fluide
-- `MagneticButton.tsx` -- bouton avec effet magnetique
-- `FilmGrain.tsx` -- texture visuelle premium
-- `StickyCallButton.tsx` -- bouton d'appel fixe en bas (conversions)
-- `PageBreadcrumb.tsx` -- fil d'Ariane SEO
-
-## IA Agentique et SEO -- Outils disponibles
-- MCP servers installes (scope user, dispo dans toutes les sessions) :
-  - Playwright : crawl de sites, screenshots, audits SEO automatises
-  - Fetch : lecture de pages web
-  - Filesystem : gestion fichiers
-  - Semrush : donnees SEO (keywords, concurrents, backlinks) -- authentifier au premier lancement
-- Bible SEO complete dans ~/.claude/docs/seo-bible.md (67Ko, 19 chapitres)
+- Tailwind CSS 4
+- Framer Motion
+- Vercel
+- GA4 + GTM
 
 ## Regles de code
-- Composants dans /src/components, pages dans /src/app
-- Un composant = un fichier
-- Nommage : PascalCase composants, kebab-case fichiers
-- Pas de "use client" sauf si absolument necessaire (interactivite)
-- Pas de console.log en production
-- Pas de dependances inutiles
-- Commenter uniquement le code non-evident
-
-## Workflow
-- Repo GitHub (Lamine cree et push)
-- Deploy Vercel (preview sur chaque push)
-- Git : commits frequents, messages clairs en francais
-
-## Statut actuel
-- [x] Recherche marche complete (ICP, keywords, concurrents, prix, terrain, ads)
-- [x] CLAUDE.md et docs de reference remplis
-- [x] Next.js + Tailwind + Framer Motion installes
-- [x] Composants EGB reutilisables copies
-- [ ] Brief Sergiu (reponses en attente -- commencer SANS bloquer sur les details)
-- [ ] Homepage
-- [ ] Design system (palette, typo, composants de base)
-- [ ] Pages service + ville
-- [ ] Page modeles
-- [ ] Page processus
-- [ ] Page realisations
-- [ ] Page contact / devis
-- [ ] Blog / content hub
-- [ ] Schema markup sur toutes les pages
-- [ ] Google Business Profile
-- [ ] Deploy Vercel + domaine
+- Server Components par defaut. "use client" UNIQUEMENT si necessaire.
+- Zero `any`. Zero `@ts-ignore`.
+- PascalCase composants, kebab-case fichiers routes
+- Pas de console.log
+- Commentaire = raison d'etre conversion/UX, pas description du code

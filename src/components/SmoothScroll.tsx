@@ -29,7 +29,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     rafIdRef.current = requestAnimationFrame(raf);
 
     if (typeof window !== "undefined") {
-      (window as Window & { lenis?: Lenis }).lenis = lenisRef.current;
+      (window as unknown as { lenis?: Lenis }).lenis = lenisRef.current;
     }
 
     return () => {
