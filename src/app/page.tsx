@@ -62,33 +62,10 @@ export default function HomePage() {
           </div>
 
           {/* Grid hero */}
-          <div className="flex-1 grid lg:grid-cols-12 relative min-h-[calc(100vh-8rem)]">
+          <div className="flex-1 grid lg:grid-cols-12">
 
-            {/* Texte — 5 cols */}
-            <div className="lg:col-span-5 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
-              <Reveal delay={0.15}>
-                <h1 className="text-[clamp(2.2rem,4vw,4.4rem)] font-medium leading-[1.05] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
-                  Votre seul rôle :<br />
-                  nous dire comment<br />
-                  <span className="text-[#B5432A]">vous rêvez de vivre.</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={0.32}>
-                <p className="mt-7 text-[clamp(0.9rem,1vw,1rem)] leading-[1.75] text-[rgba(10,14,18,0.55)] max-w-[300px]">
-                  La conception, les artisans, le budget, les délais.
-                  Ingenium s&apos;en charge — de A à Z.
-                </p>
-                <div className="mt-9">
-                  <Link href="/contact" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-semibold tracking-[0.12em] uppercase bg-[#B5432A] text-[#EEF0F1] hover:bg-[#9e3a24] transition-colors duration-300">
-                    Décrire mon projet
-                  </Link>
-                </div>
-                <p className="mt-4 text-[0.68rem] text-[rgba(10,14,18,0.35)]">Réponse sous 24h · Sans engagement</p>
-              </Reveal>
-            </div>
-
-            {/* Image cinématique — 7 cols */}
-            <div className="lg:col-span-7 relative min-h-[60vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
+            {/* Image — en premier sur mobile, à droite sur desktop */}
+            <div className="order-first lg:order-last lg:col-span-7 relative min-h-[58vh] lg:min-h-0 border-b lg:border-b-0 lg:border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
               <Image
                 src="/images/hero-ingenium.jpg"
                 alt="Villa contemporaine avec terrasse olivier centenaire — réalisation Ingenium, sud toulousain"
@@ -101,19 +78,42 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-[#0A0E12]/8" />
 
               {/* Annotation rouge */}
-              <div className="absolute bottom-8 left-7 z-10 flex items-start gap-2">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <div className="absolute bottom-6 left-6 z-10 flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                   <path d="M16 4 L6 14 M6 14 L6 9 M6 14 L11 14" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="text-[#B5432A] text-[0.82rem] leading-tight" style={pirou}>
+                <span className="text-[#B5432A] text-[0.78rem] leading-tight" style={pirou}>
                   Livré 3 sem. avant<br />la date — S.L.
                 </span>
               </div>
 
-              {/* Cartouche projet sur l'image */}
-              <div className="absolute top-6 right-6 z-10 bg-[rgba(10,14,18,0.55)] backdrop-blur-sm px-3 py-2">
+              {/* Cartouche projet — desktop uniquement */}
+              <div className="hidden lg:block absolute top-6 right-6 z-10 bg-[rgba(10,14,18,0.55)] backdrop-blur-sm px-3 py-2">
                 <span className="cartouche text-[rgba(238,240,241,0.7)]">Villa · 320 m² · Castanet-Tolosan · Ingenium × 2024</span>
               </div>
+            </div>
+
+            {/* Texte — en second sur mobile, à gauche sur desktop */}
+            <div className="order-last lg:order-first lg:col-span-5 flex flex-col justify-center px-6 lg:px-12 py-10 lg:py-20 relative z-10">
+              <Reveal delay={0.15}>
+                <h1 className="text-[clamp(2rem,4vw,4.4rem)] font-medium leading-[1.05] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
+                  Votre seul rôle :<br />
+                  nous dire comment<br />
+                  <span className="text-[#B5432A]">vous rêvez de vivre.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={0.32}>
+                <p className="mt-5 text-[clamp(0.88rem,1vw,1rem)] leading-[1.75] text-[rgba(10,14,18,0.55)] max-w-[300px]">
+                  La conception, les artisans, le budget, les délais.
+                  Ingenium s&apos;en charge — de A à Z.
+                </p>
+                <div className="mt-7">
+                  <Link href="/contact" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-semibold tracking-[0.12em] uppercase bg-[#B5432A] text-[#EEF0F1] hover:bg-[#9e3a24] transition-colors duration-300">
+                    Décrire mon projet
+                  </Link>
+                </div>
+                <p className="mt-4 text-[0.68rem] text-[rgba(10,14,18,0.35)]">Réponse sous 24h · Sans engagement</p>
+              </Reveal>
             </div>
           </div>
 
@@ -527,7 +527,7 @@ export default function HomePage() {
                 {[
                   { val: "+80", label: "projets livrés" },
                   { val: "Décennal", label: "assuré & garanti" },
-                  { val: "4.9★", label: "Google avis" },
+                  { val: "5★", label: "Google avis" },
                 ].map((stat) => (
                   <div key={stat.label} className="px-5 py-3.5 border border-[rgba(10,14,18,0.1)]">
                     <span className="block text-[1.5rem] font-medium tracking-[-0.02em]" style={clashDisplay}>{stat.val}</span>
