@@ -66,30 +66,21 @@ export default function HomePage() {
 
             {/* Texte — 5 cols */}
             <div className="lg:col-span-5 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
-              <Reveal delay={0.1}>
-                <p className="text-[0.68rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">
-                  Maître d&apos;œuvre — Toulouse
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <h1 className="text-[clamp(2.2rem,4.2vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
-                  Les artisans qui<br />ne rappellent pas.<br />
-                  Le budget qui gonfle.<br />
-                  La date qui recule.<br />
-                  <span className="text-[#B5432A]">C&apos;est le scénario classique.</span>
+              <Reveal delay={0.15}>
+                <h1 className="text-[clamp(2.2rem,4vw,4.4rem)] font-medium leading-[1.05] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
+                  Votre seul rôle :<br />
+                  nous dire comment<br />
+                  <span className="text-[#B5432A]">vous rêvez de vivre.</span>
                 </h1>
               </Reveal>
-              <Reveal delay={0.38}>
-                <p className="mt-7 text-[clamp(0.9rem,1vw,1rem)] leading-[1.75] text-[rgba(10,14,18,0.55)] max-w-[320px]">
-                  Ingenium est là pour que ce ne soit pas le vôtre.
-                  Un seul pilote. Un budget tenu. Une date contractuelle.
+              <Reveal delay={0.32}>
+                <p className="mt-7 text-[clamp(0.9rem,1vw,1rem)] leading-[1.75] text-[rgba(10,14,18,0.55)] max-w-[300px]">
+                  La conception, les artisans, le budget, les délais.
+                  Ingenium s&apos;en charge — de A à Z.
                 </p>
-                <div className="mt-9 flex flex-col sm:flex-row gap-3">
+                <div className="mt-9">
                   <Link href="/contact" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-semibold tracking-[0.12em] uppercase bg-[#B5432A] text-[#EEF0F1] hover:bg-[#9e3a24] transition-colors duration-300">
-                    Parler à Sergiu
-                  </Link>
-                  <Link href="/realisations" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-medium tracking-[0.1em] uppercase border border-[rgba(10,14,18,0.2)] text-[rgba(10,14,18,0.7)] hover:border-[rgba(10,14,18,0.4)] hover:text-[#0A0E12] transition-colors duration-300">
-                    Voir les réalisations
+                    Décrire mon projet
                   </Link>
                 </div>
                 <p className="mt-4 text-[0.68rem] text-[rgba(10,14,18,0.35)]">Réponse sous 24h · Sans engagement</p>
@@ -126,22 +117,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Cartouche bas */}
-          <div className="border-t border-[rgba(10,14,18,0.08)] px-5 lg:px-8 py-3 relative z-10">
-            <div className="flex flex-wrap items-center gap-4 lg:gap-8">
-              <span className="cartouche">Maître d&apos;Œuvre</span>
-              <span className="cartouche opacity-40">·</span>
-              <span className="cartouche">Castanet-Tolosan — 31</span>
-              <span className="cartouche opacity-40">·</span>
-              <span className="cartouche">Ingenium</span>
-              <span className="cartouche opacity-40">·</span>
-              <span className="cartouche">{new Date().getFullYear()}</span>
-              <div className="ml-auto hidden sm:flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#B5432A]" />
-                <span className="cartouche">Assurance décennale · RGE</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -199,12 +174,6 @@ export default function HomePage() {
                   <span className="text-[#B5432A] text-[0.78rem] leading-tight" style={pirou}>double hauteur<br />+ mezzanine vitrée</span>
                 </div>
               </div>
-              <Reveal delay={0.2}>
-                <div className="mt-5 flex items-baseline gap-3">
-                  <span className="text-[2.4rem] font-medium tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>8–12%</span>
-                  <span className="text-[0.78rem] text-[rgba(10,14,18,0.5)] leading-snug max-w-[160px]">d&apos;honoraires sur le montant des travaux</span>
-                </div>
-              </Reveal>
             </div>
 
             {/* Texte — 7 cols */}
