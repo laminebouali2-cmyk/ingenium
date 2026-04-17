@@ -28,8 +28,6 @@ export function FilmStrip() {
       <div
         className="flex gap-1 h-[22vw] min-h-[140px] max-h-[300px]"
         style={{ animation: "filmstrip-scroll 36s linear infinite" }}
-        onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = "paused")}
-        onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = "running")}
       >
         {items.map((img, i) => {
           const fi = i % IMAGES.length;

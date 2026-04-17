@@ -5,7 +5,7 @@ import { FaqJsonLd } from "@/components/FaqJsonLd";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 import { FilmStrip } from "@/components/FilmStrip";
-import { Reveal, RevealContainer, RevealItem, ImageReveal } from "@/components/Reveal";
+import { Reveal, RevealContainer, RevealItem } from "@/components/Reveal";
 
 const clashDisplay = { fontFamily: "'Clash Display', 'General Sans', sans-serif" };
 const pirou = { fontFamily: "'Pirou', 'General Sans', cursive" };
@@ -96,7 +96,7 @@ export default function HomePage() {
             </div>
 
             {/* Image cinématique — 7 cols */}
-            <ImageReveal className="lg:col-span-7 relative min-h-[60vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)]" direction="right" delay={0.1}>
+            <div className="lg:col-span-7 relative min-h-[60vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
               <Image
                 src="/images/hero-ingenium.jpg"
                 alt="Villa contemporaine avec terrasse olivier centenaire — réalisation Ingenium, sud toulousain"
@@ -122,7 +122,7 @@ export default function HomePage() {
               <div className="absolute top-6 right-6 z-10 bg-[rgba(10,14,18,0.55)] backdrop-blur-sm px-3 py-2">
                 <span className="cartouche text-[rgba(238,240,241,0.7)]">Villa · 320 m² · Castanet-Tolosan · Ingenium × 2024</span>
               </div>
-            </ImageReveal>
+            </div>
           </div>
 
           {/* Cartouche bas */}
@@ -180,25 +180,23 @@ export default function HomePage() {
 
             {/* Image — 5 cols */}
             <div className="lg:col-span-5 order-2 lg:order-1">
-              <ImageReveal direction="up" delay={0.1}>
-                <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
-                  <Image
-                    src="/images/solution-mezzanine.jpg"
-                    alt="Intérieur réalisé par Ingenium — salon mezzanine double hauteur, verrière et jardin"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
-                  />
-                  <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#B5432A]" />
-                  <div className="absolute bottom-6 left-6 flex items-start gap-1.5">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M13 3 L5 11 M5 11 L5 7 M5 11 L9 11" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span className="text-[#B5432A] text-[0.78rem] leading-tight" style={pirou}>double hauteur<br />+ mezzanine vitrée</span>
-                  </div>
+              <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
+                <Image
+                  src="/images/solution-mezzanine.jpg"
+                  alt="Intérieur réalisé par Ingenium — salon mezzanine double hauteur, verrière et jardin"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
+                />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#B5432A]" />
+                <div className="absolute bottom-6 left-6 flex items-start gap-1.5">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M13 3 L5 11 M5 11 L5 7 M5 11 L9 11" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="text-[#B5432A] text-[0.78rem] leading-tight" style={pirou}>double hauteur<br />+ mezzanine vitrée</span>
                 </div>
-              </ImageReveal>
+              </div>
               <Reveal delay={0.2}>
                 <div className="mt-5 flex items-baseline gap-3">
                   <span className="text-[2.4rem] font-medium tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>8–12%</span>
@@ -376,35 +374,21 @@ export default function HomePage() {
       <FilmStrip />
 
       {/* ═══════════════════════════════════════════════════
-          5. TRANSITION — split plan/chantier
+          5. TRANSITION — typographie pure, fond sombre
       ═══════════════════════════════════════════════════ */}
-      <div className="grid lg:grid-cols-2 min-h-[55vh]" aria-hidden="true">
-        {/* Côté plan — texte sur fond sombre */}
-        <div className="bg-[#0A0E12] flex items-center px-10 lg:px-16 py-16 lg:py-20">
-          <div>
-            <p className="text-[0.6rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.25)] mb-8 font-medium">Ingenium</p>
-            <p className="text-[clamp(1.8rem,3.2vw,3.4rem)] font-medium tracking-[-0.025em] text-[rgba(238,240,241,0.92)] leading-[1.1]" style={clashDisplay}>
-              Chaque détail compte.<br />
-              <span className="text-[rgba(238,240,241,0.4)]">C&apos;est ça, la maîtrise<br />d&apos;œuvre.</span>
-            </p>
-            <div className="mt-10 flex items-start gap-2">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0 mt-0.5">
-                <path d="M15 3 L6 12 M6 12 L6 8 M6 12 L10 12" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span className="text-[#B5432A] text-[0.85rem] leading-snug" style={pirou}>chantier réel — Ingenium</span>
-            </div>
+      <div className="bg-[#0A0E12] py-[clamp(4rem,8vw,8rem)] px-10 lg:px-20" aria-hidden="true">
+        <div className="mx-auto max-w-[900px]">
+          <p className="text-[0.6rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.25)] mb-8 font-medium">Ingenium</p>
+          <p className="text-[clamp(2.2rem,5vw,5.5rem)] font-medium tracking-[-0.03em] text-[rgba(238,240,241,0.92)] leading-[1.06]" style={clashDisplay}>
+            Chaque détail compte.<br />
+            <span className="text-[rgba(238,240,241,0.35)]">C&apos;est ça, la maîtrise<br />d&apos;œuvre.</span>
+          </p>
+          <div className="mt-10 flex items-start gap-2">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0 mt-0.5">
+              <path d="M15 3 L6 12 M6 12 L6 8 M6 12 L10 12" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-[#B5432A] text-[0.85rem] leading-snug" style={pirou}>chantier réel — Ingenium</span>
           </div>
-        </div>
-        {/* Côté chantier — photo sans overlay */}
-        <div className="relative min-h-[45vw] lg:min-h-0">
-          <Image
-            src="/images/chantier-propre.jpg"
-            alt="Chantier Ingenium — qualité d'exécution"
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            style={{ filter: "contrast(1.06) saturate(0.55) brightness(0.92)" }}
-          />
         </div>
       </div>
 
@@ -436,6 +420,7 @@ export default function HomePage() {
                 desc: "Rendez-vous gratuit. Vous exprimez votre projet, vos contraintes, votre budget. Nous construisons ensemble la feuille de route.",
                 img: "/images/process-ecouter.jpg",
                 imgAlt: "Premier rendez-vous Ingenium — écoute du projet client",
+                imgPosition: "object-center",
                 side: "right"
               },
               {
@@ -443,6 +428,7 @@ export default function HomePage() {
                 desc: "Plans, choix techniques, consultation des artisans, optimisation budgétaire. Chaque décision est documentée et validée avec vous.",
                 img: "/images/process-maquette.jpg",
                 imgAlt: "Maquette architecturale sur plans — phase conception Ingenium",
+                imgPosition: "object-center",
                 side: "left"
               },
               {
@@ -450,6 +436,7 @@ export default function HomePage() {
                 desc: "Coordination quotidienne. Reporting hebdomadaire. Contrôle qualité à chaque étape. Vous êtes informé, jamais surpris.",
                 img: "/images/process-chantier-equipe.jpg",
                 imgAlt: "Maîtrise d'œuvre sur chantier — suivi et coordination Ingenium, équipe en gilet jaune",
+                imgPosition: "object-center",
                 side: "right"
               },
               {
@@ -457,6 +444,7 @@ export default function HomePage() {
                 desc: "Réception contradictoire, levée des réserves, remise des documents. Votre projet est clôturé proprement, dans les délais prévus contractuellement.",
                 img: "/images/process-livrer.jpg",
                 imgAlt: "Remise des clés — livraison chantier Ingenium",
+                imgPosition: "object-[center_35%]",
                 side: "left"
               },
             ].map((step) => (
@@ -473,7 +461,7 @@ export default function HomePage() {
                         src={step.img}
                         alt={step.imgAlt}
                         fill
-                        className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                        className={`object-cover transition-transform duration-700 hover:scale-[1.02] ${step.imgPosition}`}
                         sizes="(max-width: 1024px) 100vw, 58vw"
                         style={{ filter: "contrast(1.02) saturate(0.88) brightness(1.0)" }}
                       />
@@ -540,21 +528,19 @@ export default function HomePage() {
 
             {/* Image — 5 cols */}
             <div className="lg:col-span-5">
-              <ImageReveal direction="left" delay={0.05}>
-                <div className="relative aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
-                  <Image
-                    src="/images/interieur-bois-soleil.jpg"
-                    alt="Intérieur réalisé par Ingenium — salon bois et lumière naturelle"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
-                  />
-                  <div className="absolute top-6 right-6 flex items-start gap-1.5">
-                    <span className="text-[#B5432A] text-[0.8rem]" style={pirou}>Sergiu L.</span>
-                  </div>
+              <div className="relative aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
+                <Image
+                  src="/images/interieur-bois-soleil.jpg"
+                  alt="Intérieur réalisé par Ingenium — salon bois et lumière naturelle"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
+                />
+                <div className="absolute top-6 right-6 flex items-start gap-1.5">
+                  <span className="text-[#B5432A] text-[0.8rem]" style={pirou}>Sergiu L.</span>
                 </div>
-              </ImageReveal>
+              </div>
             </div>
 
             {/* Texte — 6 cols */}
