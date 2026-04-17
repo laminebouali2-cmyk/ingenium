@@ -68,24 +68,25 @@ export default function HomePage() {
             <div className="lg:col-span-5 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
               <Reveal delay={0.1}>
                 <p className="text-[0.68rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">
-                  Ingenium — Sergiu Lungu
+                  Maître d&apos;œuvre — Toulouse
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
-                <h1 className="text-[clamp(2.4rem,4.5vw,4.8rem)] font-medium leading-[1.02] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
-                  Votre cuisine.<br />
-                  Votre terrasse.<br />
-                  Votre garage.<br />
-                  <span className="text-[#B5432A]">Voilà ce que coûte<br />un chantier sans pilote.</span>
+                <h1 className="text-[clamp(2.2rem,4.2vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
+                  Les artisans qui<br />ne rappellent pas.<br />
+                  Le budget qui gonfle.<br />
+                  La date qui recule.<br />
+                  <span className="text-[#B5432A]">C&apos;est le scénario classique.</span>
                 </h1>
               </Reveal>
               <Reveal delay={0.38}>
-                <p className="mt-7 text-[clamp(0.95rem,1.1vw,1.1rem)] leading-[1.7] text-[rgba(10,14,18,0.55)] max-w-sm">
-                  Un seul interlocuteur. Un budget contractuel. Des délais tenus.
+                <p className="mt-7 text-[clamp(0.9rem,1vw,1rem)] leading-[1.75] text-[rgba(10,14,18,0.55)] max-w-[320px]">
+                  Ingenium est là pour que ce ne soit pas le vôtre.
+                  Un seul pilote. Un budget tenu. Une date contractuelle.
                 </p>
                 <div className="mt-9 flex flex-col sm:flex-row gap-3">
                   <Link href="/contact" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-semibold tracking-[0.12em] uppercase bg-[#B5432A] text-[#EEF0F1] hover:bg-[#9e3a24] transition-colors duration-300">
-                    Recevoir un rappel gratuit
+                    Parler à Sergiu
                   </Link>
                   <Link href="/realisations" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-medium tracking-[0.1em] uppercase border border-[rgba(10,14,18,0.2)] text-[rgba(10,14,18,0.7)] hover:border-[rgba(10,14,18,0.4)] hover:text-[#0A0E12] transition-colors duration-300">
                     Voir les réalisations
@@ -151,15 +152,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-[900px]">
           <Reveal>
             <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.3)] mb-10 font-medium">Le problème</p>
-            <h2 className="text-[clamp(2.4rem,5.5vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[#EEF0F1]" style={clashDisplay}>
-              5 artisans.<br />5 plannings.<br />5 problèmes.
+            <h2 className="text-[clamp(2.2rem,5vw,5rem)] font-medium leading-[1.06] tracking-[-0.025em] text-[#EEF0F1]" style={clashDisplay}>
+              Chaque artisan<br />travaille pour lui.<br />
+              <span className="text-[rgba(238,240,241,0.35)]">Pas pour votre maison.</span>
             </h2>
           </Reveal>
           <RevealContainer className="mt-14 lg:mt-16 grid sm:grid-cols-3 gap-0 border-t border-[rgba(238,240,241,0.08)]" slow>
             {[
-              { n: "01", titre: "Le budget dérape", texte: "Chaque artisan optimise pour lui. Sans pilote, personne ne garde la vue d'ensemble. Le surcoût moyen constaté : +22%." },
-              { n: "02", titre: "Les délais glissent", texte: "Quand personne ne coordonne, le menuisier attend le plaquiste qui attend l'électricien. 6 mois de retard, courant." },
-              { n: "03", titre: "Vous gérez seul", texte: "Appels, litiges, malfaçons à constater. Votre projet de vie devient un second métier que vous n'avez pas choisi." },
+              { n: "01", titre: "Le budget explose", texte: "Le carreleur annonce 3 000 € de plus en plein chantier. L'électricien avait « sous-estimé ». Personne ne vous avait prévenu. Surcoût moyen sans coordination : +22%." },
+              { n: "02", titre: "Les délais s'étirent", texte: "Le peintre arrive. Le plaquiste n'a pas fini. Six semaines perdues. Pendant ce temps, vous payez loyer et crédit. La date du déménagement s'éloigne." },
+              { n: "03", titre: "Vous gérez seul", texte: "Un jour de congé pour surveiller le chantier. Un message sans réponse pendant 4 jours. Un désaccord entre artisans que personne ne règle. Ce n'est pas votre métier." },
             ].map((item, i) => (
               <RevealItem key={item.n} className={`py-8 ${i < 2 ? "sm:pr-8 sm:border-r border-[rgba(238,240,241,0.08)]" : ""} ${i > 0 ? "sm:pl-8" : ""} border-b sm:border-b-0 border-[rgba(238,240,241,0.08)] last:border-b-0`}>
                 <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(238,240,241,0.25)] mb-4 font-medium">{item.n}</span>
