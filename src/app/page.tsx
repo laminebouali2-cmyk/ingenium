@@ -15,7 +15,7 @@ const faqs = [
   { question: "Comment garantissez-vous le respect du budget ?", answer: "Budget détaillé ligne par ligne avant le démarrage. Chaque devis artisan validé avec vous. Engagement contractuel sur le montant total. Suivi financier en temps réel tout au long du chantier." },
   { question: "Quels sont vos délais de réalisation ?", answer: "8 à 14 mois selon la complexité, du permis de construire à la remise des clés. Nos délais sont contractuels avec pénalités de retard à notre charge." },
   { question: "Intervenez-vous sur les rénovations ?", answer: "Oui. Construction neuve, rénovation complète, extension, surélévation, coordination de chantier. Tout projet de bâtiment résidentiel dans le sud toulousain." },
-  { question: "Combien coûte un maître d'œuvre ?", answer: "Nos honoraires représentent 8 à 12% du montant des travaux selon la complexité. Premier échange et estimation toujours gratuits et sans engagement." },
+  { question: "Combien coûte un maître d'œuvre ?", answer: "Nos honoraires sont définis selon la complexité et l'envergure du projet. Premier échange et estimation toujours gratuits et sans engagement." },
 ];
 
 const businessSchema = {
@@ -157,7 +157,7 @@ export default function HomePage() {
 
             {/* Image — 5 cols */}
             <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
+              <div className="relative aspect-video lg:aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
                 <Image
                   src="/images/solution-mezzanine.jpg"
                   alt="Intérieur réalisé par Ingenium — salon mezzanine double hauteur, verrière et jardin"
@@ -347,7 +347,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════
           5. TRANSITION — typographie pure, fond sombre
       ═══════════════════════════════════════════════════ */}
-      <div className="bg-[#0A0E12] py-[clamp(4rem,8vw,8rem)] px-10 lg:px-20" aria-hidden="true">
+      <div className="bg-[#0A0E12] py-[clamp(4rem,8vw,8rem)] px-6 lg:px-20" aria-hidden="true">
         <div className="mx-auto max-w-[900px]">
           <p className="text-[0.6rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.25)] mb-8 font-medium">Ingenium</p>
           <p className="text-[clamp(2.2rem,5vw,5.5rem)] font-medium tracking-[-0.03em] text-[rgba(238,240,241,0.92)] leading-[1.06]" style={clashDisplay}>
@@ -493,7 +493,7 @@ export default function HomePage() {
 
             {/* Image — 5 cols */}
             <div className="lg:col-span-5">
-              <div className="relative aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="relative aspect-video lg:aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
                 <Image
                   src="/images/interieur-bois-soleil.jpg"
                   alt="Intérieur réalisé par Ingenium — salon bois et lumière naturelle"
