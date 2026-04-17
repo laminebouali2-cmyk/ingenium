@@ -38,7 +38,7 @@ export default function HomePage() {
       <FaqJsonLd faqs={faqs} />
 
       {/* ═══════════════════════════════════════════════════
-          1. HERO — cadre blueprint avec vraie photo
+          1. HERO — cadre blueprint, image cinématique
       ═══════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex flex-col pt-[5.5rem]" aria-label="Présentation Ingenium">
         <div className="flex-1 mx-4 lg:mx-8 mb-4 lg:mb-6 border border-[rgba(10,14,18,0.12)] relative flex flex-col">
@@ -62,8 +62,8 @@ export default function HomePage() {
           {/* Grid hero */}
           <div className="flex-1 grid lg:grid-cols-12 relative min-h-[calc(100vh-8rem)]">
 
-            {/* Texte — 6 cols */}
-            <div className="lg:col-span-6 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
+            {/* Texte — 5 cols */}
+            <div className="lg:col-span-5 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
               <p className="text-[0.68rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">
                 Ingenium — Sergiu Lungu
               </p>
@@ -87,19 +87,19 @@ export default function HomePage() {
               <p className="mt-4 text-[0.68rem] text-[rgba(10,14,18,0.35)]">Réponse sous 24h · Sans engagement</p>
             </div>
 
-            {/* Image — 6 cols */}
-            <div className="lg:col-span-6 relative min-h-[50vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
+            {/* Image cinématique — 7 cols */}
+            <div className="lg:col-span-7 relative min-h-[60vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
               <Image
-                src="/images/hero-salon-alu.jpg"
-                alt="Réalisation Ingenium — salon contemporain avec grandes baies aluminium noir, ouvert sur jardin"
+                src="/images/hero-ingenium.jpg"
+                alt="Villa contemporaine avec terrasse olivier centenaire — réalisation Ingenium, sud toulousain"
                 fill
                 className="object-cover object-center"
                 priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }}
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                style={{ filter: "contrast(1.04) saturate(0.95) brightness(0.97)" }}
               />
-              {/* Voile léger pour garder le cold du calque */}
-              <div className="absolute inset-0 bg-[#EEF0F1]/10" />
+              {/* Voile très léger */}
+              <div className="absolute inset-0 bg-[#0A0E12]/8" />
 
               {/* Annotation rouge */}
               <div className="absolute bottom-8 left-7 z-10 flex items-start gap-2">
@@ -109,6 +109,11 @@ export default function HomePage() {
                 <span className="text-[#B5432A] text-[0.82rem] leading-tight" style={pirou}>
                   Livré 3 sem. avant<br />la date — S.L.
                 </span>
+              </div>
+
+              {/* Cartouche projet sur l'image */}
+              <div className="absolute top-6 right-6 z-10 bg-[rgba(10,14,18,0.55)] backdrop-blur-sm px-3 py-2">
+                <span className="cartouche text-[rgba(238,240,241,0.7)]">Villa · 320 m² · Castanet-Tolosan · Ingenium × 2024</span>
               </div>
             </div>
           </div>
@@ -158,14 +163,40 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          3. SOLUTION — asymétrique 60/40, vraie photo
+          3. SOLUTION — asymétrique 60/40, mezzanine
       ═══════════════════════════════════════════════════ */}
       <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="La solution Ingenium">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
+            {/* Image — 5 cols */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
+                <Image
+                  src="/images/solution-mezzanine.jpg"
+                  alt="Intérieur réalisé par Ingenium — salon mezzanine double hauteur, verrière et jardin"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
+                />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#B5432A]" />
+                {/* Annotation sur l'image */}
+                <div className="absolute bottom-6 left-6 flex items-start gap-1.5">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M13 3 L5 11 M5 11 L5 7 M5 11 L9 11" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="text-[#B5432A] text-[0.78rem] leading-tight" style={pirou}>double hauteur<br />+ mezzanine vitrée</span>
+                </div>
+              </div>
+              <div className="mt-5 flex items-baseline gap-3">
+                <span className="text-[2.4rem] font-medium tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>8–12%</span>
+                <span className="text-[0.78rem] text-[rgba(10,14,18,0.5)] leading-snug max-w-[160px]">d&apos;honoraires sur le montant des travaux</span>
+              </div>
+            </div>
+
             {/* Texte — 7 cols */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 order-1 lg:order-2">
               <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">La solution</p>
               <h2 className="text-[clamp(2rem,3.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0A0E12]" style={clashDisplay}>
                 Un seul numéro.<br />Une seule personne.<br />Zéro zone d&apos;ombre.
@@ -194,31 +225,12 @@ export default function HomePage() {
                 </svg>
               </Link>
             </div>
-
-            {/* Image — 5 cols */}
-            <div className="lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
-                <Image
-                  src="/images/solution-openplan.jpg"
-                  alt="Intérieur réalisé par Ingenium — salon open plan bois et lumière naturelle"
-                  fill
-                  className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.01)" }}
-                />
-                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#B5432A]" />
-              </div>
-              <div className="mt-5 flex items-baseline gap-3">
-                <span className="text-[2.4rem] font-medium tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>8–12%</span>
-                <span className="text-[0.78rem] text-[rgba(10,14,18,0.5)] leading-snug max-w-[160px]">d&apos;honoraires sur le montant des travaux</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          4. PROJETS — grille brisée avec vraies photos
+          4. PROJETS — vraies villas toulousaines
       ═══════════════════════════════════════════════════ */}
       <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10 bg-[rgba(10,14,18,0.02)]" aria-label="Réalisations Ingenium">
         <div className="mx-auto max-w-[1400px]">
@@ -234,26 +246,26 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Grille brisée — asymétrique */}
+          {/* Grille brisée — villas + piscines */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
 
-            {/* Projet 1 — grand, 2 cols, vraie photo chantier */}
+            {/* Projet 1 — villa piscine terrasse bois, grand 2 cols */}
             <div className="lg:col-span-2 group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
               <div className="aspect-[16/9] lg:aspect-[2/1] relative overflow-hidden">
                 <Image
-                  src="/images/projet-terrasse-olivier.jpg"
-                  alt="Pose terrasse bois composite — Castanet-Tolosan, réalisation Ingenium"
+                  src="/images/projet-villa-1.jpg"
+                  alt="Villa contemporaine avec piscine et terrasse bois — construction Ingenium, Castanet-Tolosan"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
-                  style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }}
+                  style={{ filter: "contrast(1.04) saturate(0.92) brightness(1.0)" }}
                 />
               </div>
               <div className="px-5 py-4 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="cartouche">Terrasse composite + aménagement</span>
+                  <span className="cartouche">Villa neuve + piscine + terrasse</span>
                   <span className="cartouche opacity-40">·</span>
-                  <span className="cartouche">85 m²</span>
+                  <span className="cartouche">320 m²</span>
                   <span className="cartouche opacity-40">·</span>
                   <span className="cartouche">Castanet-Tolosan</span>
                   <span className="cartouche opacity-40">·</span>
@@ -262,63 +274,65 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Projet 2 — portrait, détail luxe */}
+            {/* Projet 2 — escalier bois LED, portrait, détail luxe */}
             <div className="group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
               <div className="aspect-[3/4] relative overflow-hidden">
                 <Image
-                  src="/images/projet-lavabo-detail.jpg"
-                  alt="Salle de bain rénovée — lavabo pierre et robinetterie laiton, réalisation Ingenium"
+                  src="/images/detail-escalier-led.jpg"
+                  alt="Escalier bois sur-mesure avec LED intégrés — finition Ingenium, Toulouse"
                   fill
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, 33vw"
-                  style={{ filter: "contrast(1.02) saturate(0.88) brightness(1.02)" }}
+                  style={{ filter: "contrast(1.03) saturate(0.88) brightness(1.0)" }}
                 />
               </div>
               <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="cartouche">Rénovation salle de bain</span>
+                  <span className="cartouche">Escalier bois + LED sur-mesure</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Toulouse</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Projet 3 — villa piscine pergola */}
+            <div className="group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src="/images/projet-villa-2.jpg"
+                  alt="Villa avec piscine et pergola aluminium — Ingenium, sud de Toulouse"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  style={{ filter: "contrast(1.04) saturate(0.9) brightness(1.0)" }}
+                />
+              </div>
+              <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="cartouche">Villa + piscine + pergola</span>
                   <span className="cartouche opacity-40">·</span>
                   <span className="cartouche">Ramonville</span>
                 </div>
               </div>
             </div>
 
-            {/* Projet 3 — cuisine */}
-            <div className="group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
-              <div className="aspect-[4/3] relative overflow-hidden">
-                <Image
-                  src="/images/projet-cuisine-bois.jpg"
-                  alt="Cuisine neuve bois et blanc — réalisation Ingenium, sud toulousain"
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
-                  sizes="(max-width: 640px) 100vw, 33vw"
-                  style={{ filter: "contrast(1.02) saturate(0.9) brightness(1.0)" }}
-                />
-              </div>
-              <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="cartouche">Cuisine neuve sur-mesure</span>
-                  <span className="cartouche opacity-40">·</span>
-                  <span className="cartouche">Labège</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Projet 4 — jardin, wide */}
+            {/* Projet 4 — villa piscine deck gris, wide */}
             <div className="sm:col-span-2 group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
               <div className="aspect-[16/7] relative overflow-hidden">
                 <Image
-                  src="/images/projet-jardin-moderne.jpg"
-                  alt="Aménagement extérieur contemporain — jardin et terrasse, réalisation Ingenium"
+                  src="/images/projet-villa-3.jpg"
+                  alt="Villa contemporaine piscine et deck composite — réalisation Ingenium, Escalquens"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, 66vw"
-                  style={{ filter: "contrast(1.03) saturate(0.88) brightness(1.01)" }}
+                  style={{ filter: "contrast(1.04) saturate(0.9) brightness(1.0)" }}
                 />
               </div>
               <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="cartouche">Extension + aménagement extérieur</span>
+                  <span className="cartouche">Construction neuve + piscine</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">280 m²</span>
                   <span className="cartouche opacity-40">·</span>
                   <span className="cartouche">Escalquens</span>
                   <span className="cartouche opacity-40">·</span>
@@ -332,21 +346,42 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          5. TRANSITION — placo chantier LED, image choc
+          4b. BANDE PHOTO — filmstrip horizontal
+      ═══════════════════════════════════════════════════ */}
+      <div className="overflow-hidden" aria-hidden="true">
+        <div className="flex gap-1 h-[22vw] min-h-[140px] max-h-[320px]">
+          <div className="flex-[1.3] relative overflow-hidden">
+            <Image src="/images/interieur-bois-soleil.jpg" alt="" fill className="object-cover object-center" sizes="25vw" style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }} />
+          </div>
+          <div className="flex-[0.9] relative overflow-hidden">
+            <Image src="/images/chantier-piscine.jpg" alt="" fill className="object-cover object-center" sizes="20vw" style={{ filter: "contrast(1.1) saturate(0.5) brightness(0.85)" }} />
+          </div>
+          <div className="flex-[1.1] relative overflow-hidden">
+            <Image src="/images/terrasse-olivier-nuit.jpg" alt="" fill className="object-cover object-center" sizes="22vw" style={{ filter: "contrast(1.04) saturate(0.88) brightness(0.95)" }} />
+          </div>
+          <div className="flex-[0.85] relative overflow-hidden hidden sm:block">
+            <Image src="/images/ambiance-architecturale.jpg" alt="" fill className="object-cover object-center" sizes="18vw" style={{ filter: "contrast(1.06) saturate(0.6) brightness(0.9)" }} />
+          </div>
+          <div className="flex-[1.0] relative overflow-hidden hidden lg:block">
+            <Image src="/images/detail-porte-fenetre.jpg" alt="" fill className="object-cover object-center" sizes="20vw" style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }} />
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════
+          5. TRANSITION — villa chantier, image choc
       ═══════════════════════════════════════════════════ */}
       <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden" aria-hidden="true">
         <Image
-          src="/images/transition-chantier-led.jpg"
-          alt="Chantier Ingenium en cours — placo parfait, éclairage LED rasant"
+          src="/images/chantier-villa.jpg"
+          alt="Chantier villa Ingenium en cours — construction structure moderne"
           fill
           className="object-cover object-center"
           sizes="100vw"
-          style={{ filter: "contrast(1.1) saturate(0.3) brightness(0.75)" }}
+          style={{ filter: "contrast(1.08) saturate(0.4) brightness(0.7)" }}
         />
-        {/* Voile sombre pour assurer lisibilité */}
-        <div className="absolute inset-0 bg-[#0A0E12]/50" />
+        <div className="absolute inset-0 bg-[#0A0E12]/55" />
 
-        {/* Texte centré */}
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <p className="text-[clamp(1.8rem,4.5vw,4.5rem)] font-medium tracking-[-0.025em] text-[rgba(238,240,241,0.9)] text-center leading-[1.12]" style={clashDisplay}>
             Chaque détail compte.<br />
@@ -354,17 +389,16 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Annotation rouge */}
         <div className="absolute bottom-8 right-8 lg:right-12 flex items-start gap-2 z-10">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <path d="M18 4 L7 15 M7 15 L7 10 M7 15 L12 15" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="text-[#B5432A] text-[0.85rem] leading-tight" style={pirou}>chaque détail compte</span>
+          <span className="text-[#B5432A] text-[0.85rem] leading-tight" style={pirou}>chantier réel — Ingenium</span>
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════
-          6. PROCESS — 4 étapes, photos process réelles
+          6. PROCESS — 4 étapes, photos chantier authentiques
       ═══════════════════════════════════════════════════ */}
       <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="Notre méthode">
         <div className="mx-auto max-w-[1400px]">
@@ -382,7 +416,6 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Layout process : étapes + images alternées */}
           <div className="space-y-0 border-t border-[rgba(10,14,18,0.1)]">
             {[
               {
@@ -402,19 +435,17 @@ export default function HomePage() {
               {
                 n: "03", verbe: "Piloter",
                 desc: "Coordination quotidienne. Reporting hebdomadaire. Contrôle qualité à chaque étape. Vous êtes informé, jamais surpris.",
-                img: "/images/process-chantier-equipe.jpg",
-                imgAlt: "Maîtrise d'œuvre sur chantier — suivi et coordination Ingenium",
+                img: "/images/chantier-piscine.jpg",
+                imgAlt: "Piscine en construction — suivi de chantier Ingenium, projet réel",
                 side: "right"
               },
             ].map((step) => (
               <div key={step.n} className={`grid lg:grid-cols-12 gap-8 lg:gap-16 items-center py-12 lg:py-16 border-b border-[rgba(10,14,18,0.08)] ${step.side === "left" ? "lg:[&>*:first-child]:order-last" : ""}`}>
-                {/* Texte */}
                 <div className="lg:col-span-5">
                   <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.3)] mb-3 font-medium">{step.n}</span>
                   <h3 className="text-[2rem] lg:text-[2.4rem] font-medium text-[#0A0E12] mb-5 tracking-[-0.02em]" style={clashDisplay}>{step.verbe}</h3>
                   <p className="text-[0.88rem] leading-[1.7] text-[rgba(10,14,18,0.55)] max-w-md">{step.desc}</p>
                 </div>
-                {/* Image */}
                 <div className="lg:col-span-7">
                   <div className="relative aspect-[16/9] overflow-hidden border border-[rgba(10,14,18,0.07)]">
                     <Image
@@ -430,7 +461,6 @@ export default function HomePage() {
               </div>
             ))}
 
-            {/* Étape 4 — Livrer, texte seul */}
             <div className="py-12 lg:py-14">
               <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.3)] mb-3 font-medium">04</span>
               <div className="grid lg:grid-cols-2 gap-8">
@@ -487,24 +517,23 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          8. FONDATEUR — Sergiu, photo fenêtre/vie
+          8. FONDATEUR — Sergiu, intérieur bois soleil
       ═══════════════════════════════════════════════════ */}
       <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="Sergiu Lungu, fondateur Ingenium">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-            {/* Image — 5 cols, photo alu fenêtre intime */}
+            {/* Image — 5 cols */}
             <div className="lg:col-span-5">
               <div className="relative aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
                 <Image
-                  src="/images/detail-fenetres-alu.jpg"
-                  alt="Intérieur Ingenium — baies aluminium noir, lumière naturelle, projet livré"
+                  src="/images/interieur-bois-soleil.jpg"
+                  alt="Intérieur réalisé par Ingenium — salon bois et lumière naturelle, chaises terracotta"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  style={{ filter: "contrast(1.02) saturate(0.88) brightness(1.01)" }}
+                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.0)" }}
                 />
-                {/* Annotation Sergiu */}
                 <div className="absolute top-6 right-6 flex items-start gap-1.5">
                   <span className="text-[#B5432A] text-[0.8rem]" style={pirou}>Sergiu L.</span>
                 </div>
