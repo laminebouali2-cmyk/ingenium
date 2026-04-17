@@ -5,9 +5,9 @@ export const siteConfig = {
   description:
     "Ingenium pilote votre construction ou renovation de A a Z : conception, coordination artisans, respect du budget et des delais. Devis gratuit. Castanet-Tolosan et sud toulousain.",
   url: "https://www.ingenium-moe.fr",
-  phone: "+33XXXXXXXXX",
-  phoneDisplay: "06 XX XX XX XX",
-  email: "contact@ingenium-moe.fr",
+  phone: "+33665015882",
+  phoneDisplay: "06 65 01 58 82",
+  email: "contact@ingeniumbtp.fr",
   address: {
     street: "Castanet-Tolosan",
     city: "Castanet-Tolosan",

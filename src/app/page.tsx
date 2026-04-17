@@ -354,12 +354,6 @@ export default function HomePage() {
             Chaque détail compte.<br />
             <span className="text-[rgba(238,240,241,0.35)]">C&apos;est ça, la maîtrise<br />d&apos;œuvre.</span>
           </p>
-          <div className="mt-10 flex items-start gap-2">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0 mt-0.5">
-              <path d="M15 3 L6 12 M6 12 L6 8 M6 12 L10 12" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="text-[#B5432A] text-[0.85rem] leading-snug" style={pirou}>chantier réel — Ingenium</span>
-          </div>
         </div>
       </div>
 
@@ -415,7 +409,7 @@ export default function HomePage() {
                 desc: "Réception contradictoire, levée des réserves, remise des documents. Votre projet est clôturé proprement, dans les délais prévus contractuellement.",
                 img: "/images/process-livrer.jpg",
                 imgAlt: "Remise des clés — livraison chantier Ingenium",
-                imgPosition: "object-[center_35%]",
+                imgPosition: "object-bottom",
                 side: "left"
               },
             ].map((step) => (
@@ -521,9 +515,9 @@ export default function HomePage() {
                 Quand vous appelez Ingenium,<br />c&apos;est Sergiu qui décroche.
               </h2>
               <p className="text-[0.9rem] leading-[1.75] text-[rgba(10,14,18,0.6)] max-w-lg mb-4">
-                15 ans de terrain. Des chantiers de 50 000 € à 800 000 €. Des rénovations complexes,
-                des constructions from scratch, des extensions délicates. Sergiu Lungu a tout piloté
-                avant de fonder Ingenium.
+                Des chantiers de 50 000 € à 800 000 €. Rénovations complexes, constructions
+                from scratch, extensions délicates. Sergiu Lungu a fondé Ingenium avec une
+                obsession : que chaque client sache où va chaque euro, chaque semaine.
               </p>
               <p className="text-[0.9rem] leading-[1.75] text-[rgba(10,14,18,0.6)] max-w-lg">
                 Il ne sous-traite pas la relation client. Il ne disparaît pas après la signature.
@@ -532,7 +526,7 @@ export default function HomePage() {
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 {[
                   { val: "+80", label: "projets livrés" },
-                  { val: "15 ans", label: "d'expérience" },
+                  { val: "Décennal", label: "assuré & garanti" },
                   { val: "4.9★", label: "Google avis" },
                 ].map((stat) => (
                   <div key={stat.label} className="px-5 py-3.5 border border-[rgba(10,14,18,0.1)]">
