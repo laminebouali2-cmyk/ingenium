@@ -41,22 +41,22 @@ export const springs = {
   },
 } as const;
 
-// Easing curves — inspirés de l'architecture
+// Easing curves
 export const easings = {
-  // Sortie douce — comme une porte qui se ferme lentement
+  // Sortie expo — entrées principals
   easeOut: [0.16, 1, 0.3, 1] as [number, number, number, number],
-  // Entrée/sortie — comme un ascenseur premium
-  easeInOut: [0.65, 0, 0.35, 1] as [number, number, number, number],
-  // Reveal — comme un rideau qui s'ouvre
+  // In-out quart — transitions de page
+  easeInOut: [0.76, 0, 0.24, 1] as [number, number, number, number],
+  // Reveal — clip-path reveals
   reveal: [0.77, 0, 0.175, 1] as [number, number, number, number],
 };
 
-// Durées — le temps est un luxe
+// Durées — max 0.8s pour les reveals, 0.3s pour hovers
 export const durations = {
-  fast: 0.4,
-  normal: 0.8,
-  slow: 1.2,
-  contemplative: 1.6,
+  fast: 0.3,
+  normal: 0.5,
+  slow: 0.8,
+  contemplative: 0.8, // jamais > 1.2s
 };
 
 // Stagger — le rythme de lecture

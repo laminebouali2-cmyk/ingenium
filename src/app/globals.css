@@ -1,41 +1,95 @@
 @import "tailwindcss";
 
+/* Fontshare chargé via <link> dans layout.tsx — pas d'@import ici pour Turbopack */
+
 @theme inline {
-  --color-background: #fafaf9;
-  --color-foreground: #1c1917;
-  --color-accent: #a3836a;
-  --color-accent-light: #c4a882;
-  --color-accent-dark: #7a5f4a;
-  --color-muted: #78716c;
-  --color-border: #e7e5e4;
-  --color-surface: #f5f5f4;
-  --font-sans: var(--font-outfit);
-  --font-serif: var(--font-libre);
+  /* Palette calque */
+  --color-bg: #EEF0F1;
+  --color-bg-dark: #0A0E12;
+  --color-ink: #0A0E12;
+  --color-accent: #B5432A;
+  --color-border: rgba(10, 14, 18, 0.1);
+  --color-border-strong: rgba(10, 14, 18, 0.2);
+
+  /* Aliases Tailwind */
+  --color-background: #EEF0F1;
+  --color-foreground: #0A0E12;
+  --color-muted: rgba(10, 14, 18, 0.45);
+  --color-surface: rgba(10, 14, 18, 0.04);
+
+  /* Typographie */
+  --font-sans: "General Sans", system-ui, sans-serif;
+  --font-display: "Clash Display", "General Sans", sans-serif;
+  --font-annotation: "Pirou", "General Sans", cursive;
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: #fafaf9;
-  color: #1c1917;
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: #EEF0F1;
+  color: #0A0E12;
+  font-family: "General Sans", system-ui, sans-serif;
 }
 
 ::selection {
-  background: #a3836a;
-  color: white;
+  background: #B5432A;
+  color: #EEF0F1;
 }
 
 :focus-visible {
-  outline: 2px solid #a3836a;
-  outline-offset: 2px;
+  outline: 1px solid #B5432A;
+  outline-offset: 3px;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #e7e5e4; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #78716c; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 14, 18, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 14, 18, 0.3);
+}
+
+/* Classe utilitaire font-display */
+.font-display {
+  font-family: "Clash Display", "General Sans", sans-serif;
+}
+
+.font-annotation {
+  font-family: "Pirou", "General Sans", cursive;
+}
+
+/* Cartouche — format plan d'architecte */
+.cartouche {
+  font-family: "General Sans", monospace, sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(10, 14, 18, 0.4);
+}
+
+/* Annotation rouge manuscrite */
+.annotation {
+  font-family: "Pirou", "General Sans", cursive;
+  color: #B5432A;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

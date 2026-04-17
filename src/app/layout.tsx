@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
-import { Outfit, Libre_Baskerville } from "next/font/google";
 import { StickyCallButton } from "@/components/StickyCallButton";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const libre = Libre_Baskerville({
-  variable: "--font-libre",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Maitre d'oeuvre Toulouse & Castanet-Tolosan | Ingenium",
+    default: "Maître d'Œuvre Toulouse & Castanet-Tolosan | Ingenium",
     template: "%s | Ingenium",
   },
   description: siteConfig.description,
@@ -41,7 +25,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Maitre d'oeuvre Toulouse & Castanet-Tolosan | Ingenium",
+    title: "Maître d'Œuvre Toulouse & Castanet-Tolosan | Ingenium",
     description: siteConfig.description,
   },
   robots: {
@@ -64,11 +48,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="fr"
-      className={`${outfit.variable} ${libre.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="fr" className="h-full">
+      <head>
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=general-sans@300,400,500,600&f[]=pirou@400,500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

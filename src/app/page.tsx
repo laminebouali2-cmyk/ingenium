@@ -1,16 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Reveal, RevealContainer, RevealItem, TextReveal, LineReveal, CounterReveal, ImageReveal } from "@/components/Reveal";
-import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqJsonLd } from "@/components/FaqJsonLd";
+import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 
+const clashDisplay = { fontFamily: "'Clash Display', 'General Sans', sans-serif" };
+const pirou = { fontFamily: "'Pirou', 'General Sans', cursive" };
+
 const faqs = [
-  { question: "Quelle difference entre maitre d'oeuvre et constructeur ?", answer: "Un constructeur (CCMI) impose ses plans et ses artisans. Un maitre d'oeuvre concoit votre projet sur-mesure, selectionne les meilleurs artisans et vous donne une transparence totale sur chaque ligne du budget." },
-  { question: "Comment garantissez-vous le respect du budget ?", answer: "Budget detaille ligne par ligne avant le demarrage. Chaque devis artisan valide avec vous. Engagement contractuel sur le montant total. Suivi financier en temps reel tout au long du chantier." },
-  { question: "Quels sont vos delais de realisation ?", answer: "8 a 14 mois selon la complexite, du permis de construire a la remise des cles. Nos delais sont contractuels avec penalites de retard a notre charge." },
-  { question: "Intervenez-vous sur les renovations ?", answer: "Oui. Construction neuve, renovation complete, extension, surelevation, coordination de chantier. Tout projet de batiment residentiel dans le sud toulousain." },
-  { question: "Combien coute un maitre d'oeuvre ?", answer: "Nos honoraires representent 8 a 12% du montant des travaux selon la complexite. Premier echange et estimation toujours gratuits et sans engagement." },
+  { question: "Quelle différence entre maître d'œuvre et constructeur ?", answer: "Un constructeur (CCMI) impose ses plans et ses artisans. Un maître d'œuvre conçoit votre projet sur-mesure, sélectionne les meilleurs artisans et vous donne une transparence totale sur chaque ligne du budget." },
+  { question: "Comment garantissez-vous le respect du budget ?", answer: "Budget détaillé ligne par ligne avant le démarrage. Chaque devis artisan validé avec vous. Engagement contractuel sur le montant total. Suivi financier en temps réel tout au long du chantier." },
+  { question: "Quels sont vos délais de réalisation ?", answer: "8 à 14 mois selon la complexité, du permis de construire à la remise des clés. Nos délais sont contractuels avec pénalités de retard à notre charge." },
+  { question: "Intervenez-vous sur les rénovations ?", answer: "Oui. Construction neuve, rénovation complète, extension, surélévation, coordination de chantier. Tout projet de bâtiment résidentiel dans le sud toulousain." },
+  { question: "Combien coûte un maître d'œuvre ?", answer: "Nos honoraires représentent 8 à 12% du montant des travaux selon la complexité. Premier échange et estimation toujours gratuits et sans engagement." },
 ];
 
 const businessSchema = {
@@ -24,7 +27,7 @@ const businessSchema = {
   address: { "@type": "PostalAddress", addressLocality: siteConfig.address.city, postalCode: siteConfig.address.postalCode, addressRegion: siteConfig.address.region, addressCountry: siteConfig.address.country },
   geo: { "@type": "GeoCoordinates", latitude: siteConfig.address.geo.lat, longitude: siteConfig.address.geo.lng },
   areaServed: [...siteConfig.zones.tier1, ...siteConfig.zones.tier2].map((z) => ({ "@type": "City", name: z })),
-  hasOfferCatalog: { "@type": "OfferCatalog", name: "Services de maitrise d'oeuvre", itemListElement: siteConfig.services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title } })) },
+  hasOfferCatalog: { "@type": "OfferCatalog", name: "Services de maîtrise d'œuvre", itemListElement: siteConfig.services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title } })) },
   founder: { "@type": "Person", name: siteConfig.founder.name },
 };
 
@@ -34,482 +37,554 @@ export default function HomePage() {
       <JsonLd data={businessSchema} />
       <FaqJsonLd faqs={faqs} />
 
-      {/* ══════════════════════════════════════════════════════════
-          1. HERO — fond clair, asymetrie 7/5
-      ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center pt-24 lg:pt-0">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/40 z-10" />
-          <div className="absolute inset-0 bg-surface" />
-        </div>
+      {/* ═══════════════════════════════════════════════════
+          1. HERO — cadre blueprint avec vraie photo
+      ═══════════════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex flex-col pt-[5.5rem]" aria-label="Présentation Ingenium">
+        <div className="flex-1 mx-4 lg:mx-8 mb-4 lg:mb-6 border border-[rgba(10,14,18,0.12)] relative flex flex-col">
 
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10 w-full">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 max-w-2xl">
-              <Reveal variant="fadeUp">
-                <p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">
-                  Maitre d&apos;oeuvre a Toulouse &amp; Castanet-Tolosan
-                </p>
-              </Reveal>
+          {/* Coins blueprint accent */}
+          <div className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-[#B5432A] z-10" />
+          <div className="absolute -top-px -right-px w-6 h-6 border-t-2 border-r-2 border-[#B5432A] z-10" />
+          <div className="absolute -bottom-px -left-px w-6 h-6 border-b-2 border-l-2 border-[rgba(10,14,18,0.2)] z-10" />
+          <div className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-[rgba(10,14,18,0.2)] z-10" />
 
-              <TextReveal as="h1" className="text-4xl sm:text-5xl lg:text-[3.8rem] font-light tracking-[-0.03em] leading-[1.05] mb-8">
-                Votre projet de A a Z. Sans mauvaise surprise.
-              </TextReveal>
+          {/* Bande label haut */}
+          <div className="flex items-center justify-between px-5 lg:px-8 py-3 border-b border-[rgba(10,14,18,0.08)] relative z-10">
+            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.4)] font-medium">
+              Maître d&apos;Œuvre — Castanet-Tolosan — Toulouse
+            </span>
+            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.25)]">
+              Planche 01 / 01
+            </span>
+          </div>
 
-              <Reveal variant="fadeUp" delay={0.3}>
-                <p className="text-lg lg:text-xl text-muted leading-relaxed max-w-lg mb-10">
-                  Ingenium pilote votre construction ou renovation :
-                  conception, coordination des artisans, respect du budget
-                  et des delais. Sud toulousain et alentours.
-                </p>
-              </Reveal>
+          {/* Grid hero */}
+          <div className="flex-1 grid lg:grid-cols-12 relative min-h-[calc(100vh-8rem)]">
 
-              <Reveal variant="fadeUp" delay={0.4}>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 text-[0.8rem] font-semibold uppercase tracking-wider bg-foreground text-background hover:bg-foreground/90 transition-colors">
-                    Discuter de mon projet
-                  </Link>
-                  <Link href="/realisations" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-[0.8rem] font-semibold uppercase tracking-wider border border-foreground/20 hover:border-foreground/40 transition-colors">
-                    Voir nos realisations
-                  </Link>
-                </div>
-              </Reveal>
+            {/* Texte — 6 cols */}
+            <div className="lg:col-span-6 flex flex-col justify-center px-6 lg:px-12 py-14 lg:py-20 relative z-10">
+              <p className="text-[0.68rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">
+                Ingenium — Sergiu Lungu
+              </p>
+              <h1 className="text-[clamp(2.4rem,4.5vw,4.8rem)] font-medium leading-[1.02] tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>
+                Votre cuisine.<br />
+                Votre terrasse.<br />
+                Votre garage.<br />
+                <span className="text-[#B5432A]">Voilà ce que coûte<br />un chantier sans pilote.</span>
+              </h1>
+              <p className="mt-7 text-[clamp(0.95rem,1.1vw,1.1rem)] leading-[1.7] text-[rgba(10,14,18,0.55)] max-w-sm">
+                Un seul interlocuteur. Un budget contractuel. Des délais tenus.
+              </p>
+              <div className="mt-9 flex flex-col sm:flex-row gap-3">
+                <Link href="/contact" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-semibold tracking-[0.12em] uppercase bg-[#B5432A] text-[#EEF0F1] hover:bg-[#9e3a24] transition-colors duration-300">
+                  Recevoir un rappel gratuit
+                </Link>
+                <Link href="/realisations" className="inline-flex items-center justify-center px-7 py-4 text-[0.73rem] font-medium tracking-[0.1em] uppercase border border-[rgba(10,14,18,0.2)] text-[rgba(10,14,18,0.7)] hover:border-[rgba(10,14,18,0.4)] hover:text-[#0A0E12] transition-colors duration-300">
+                  Voir les réalisations
+                </Link>
+              </div>
+              <p className="mt-4 text-[0.68rem] text-[rgba(10,14,18,0.35)]">Réponse sous 24h · Sans engagement</p>
             </div>
 
-            <div className="lg:col-span-5">
-              <ImageReveal direction="right" delay={0.2}>
-                <div className="relative aspect-[4/5] lg:aspect-[3/4] bg-surface">
-                  {/* TODO [Lamine 2026-04] : photo reelle */}
-                  <div className="absolute inset-0 flex items-center justify-center text-muted/30">
-                    <svg className="w-16 h-16 opacity-30" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" />
-                    </svg>
-                  </div>
-                </div>
-              </ImageReveal>
+            {/* Image — 6 cols */}
+            <div className="lg:col-span-6 relative min-h-[50vw] lg:min-h-0 border-l border-[rgba(10,14,18,0.08)] overflow-hidden">
+              <Image
+                src="/images/hero-salon-alu.jpg"
+                alt="Réalisation Ingenium — salon contemporain avec grandes baies aluminium noir, ouvert sur jardin"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }}
+              />
+              {/* Voile léger pour garder le cold du calque */}
+              <div className="absolute inset-0 bg-[#EEF0F1]/10" />
+
+              {/* Annotation rouge */}
+              <div className="absolute bottom-8 left-7 z-10 flex items-start gap-2">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M16 4 L6 14 M6 14 L6 9 M6 14 L11 14" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="text-[#B5432A] text-[0.82rem] leading-tight" style={pirou}>
+                  Livré 3 sem. avant<br />la date — S.L.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cartouche bas */}
+          <div className="border-t border-[rgba(10,14,18,0.08)] px-5 lg:px-8 py-3 relative z-10">
+            <div className="flex flex-wrap items-center gap-4 lg:gap-8">
+              <span className="cartouche">Maître d&apos;Œuvre</span>
+              <span className="cartouche opacity-40">·</span>
+              <span className="cartouche">Castanet-Tolosan — 31</span>
+              <span className="cartouche opacity-40">·</span>
+              <span className="cartouche">Ingenium</span>
+              <span className="cartouche opacity-40">·</span>
+              <span className="cartouche">{new Date().getFullYear()}</span>
+              <div className="ml-auto hidden sm:flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B5432A]" />
+                <span className="cartouche">Assurance décennale · RGE</span>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Ligne decorative de transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          2. STATS — fond blanc, compteurs animes
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 text-center">
+      {/* ═══════════════════════════════════════════════════
+          2. PROBLÈME — fond sombre, typographie pure
+      ═══════════════════════════════════════════════════ */}
+      <section className="bg-[#0A0E12] py-[clamp(5rem,10vw,9rem)] px-6 lg:px-10" aria-label="Le problème sans maître d'œuvre">
+        <div className="mx-auto max-w-[900px]">
+          <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.3)] mb-10 font-medium">Le problème</p>
+          <h2 className="text-[clamp(2.4rem,5.5vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.025em] text-[#EEF0F1]" style={clashDisplay}>
+            5 artisans.<br />5 plannings.<br />5 problèmes.
+          </h2>
+          <div className="mt-14 lg:mt-16 grid sm:grid-cols-3 gap-0 border-t border-[rgba(238,240,241,0.08)]">
             {[
-              { value: 500, suffix: "+", label: "familles accompagnees" },
-              { value: 48, suffix: "h", label: "pour votre devis gratuit" },
-              { value: 100, suffix: "%", label: "des budgets respectes" },
-              { value: 10, suffix: " ans", label: "de garantie sur chaque projet" },
-            ].map((stat) => (
-              <Reveal key={stat.label} variant="fadeUp">
-                <div>
-                  <p className="text-4xl lg:text-5xl font-light tracking-tight mb-2">
-                    <CounterReveal value={stat.value} suffix={stat.suffix} className="tabular-nums" />
-                  </p>
-                  <p className="text-sm text-muted uppercase tracking-wider">{stat.label}</p>
-                </div>
-              </Reveal>
+              { n: "01", titre: "Le budget dérape", texte: "Chaque artisan optimise pour lui. Sans pilote, personne ne garde la vue d'ensemble. Le surcoût moyen constaté : +22%." },
+              { n: "02", titre: "Les délais glissent", texte: "Quand personne ne coordonne, le menuisier attend le plaquiste qui attend l'électricien. 6 mois de retard, courant." },
+              { n: "03", titre: "Vous gérez seul", texte: "Appels, litiges, malfaçons à constater. Votre projet de vie devient un second métier que vous n'avez pas choisi." },
+            ].map((item, i) => (
+              <div key={item.n} className={`py-8 ${i < 2 ? "sm:pr-8 sm:border-r border-[rgba(238,240,241,0.08)]" : ""} ${i > 0 ? "sm:pl-8" : ""} border-b sm:border-b-0 border-[rgba(238,240,241,0.08)] last:border-b-0`}>
+                <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(238,240,241,0.25)] mb-4 font-medium">{item.n}</span>
+                <h3 className="text-[1rem] font-medium text-[#EEF0F1] mb-3 leading-tight" style={clashDisplay}>{item.titre}</h3>
+                <p className="text-[0.83rem] leading-[1.7] text-[rgba(238,240,241,0.45)]">{item.texte}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          3. PROBLEME / SOLUTION — fond surface, colonnes face a face
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-surface">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          {/* Ligne fine decorative */}
-          <Reveal><div className="w-16 h-px bg-accent mb-12" /></Reveal>
+      {/* ═══════════════════════════════════════════════════
+          3. SOLUTION — asymétrique 60/40, vraie photo
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="La solution Ingenium">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
-              <Reveal>
-                <p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Le probleme</p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.15] mb-8">
-                  Construire ou renover<br />
-                  <span className="font-serif italic">sans chef d&apos;orchestre ?</span>
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="space-y-4 text-muted leading-relaxed">
-                  <p>5 artisans, 5 plannings, 5 factures, 5 problemes.</p>
-                  <p>Des devis qui explosent. Des delais qui glissent. Des malfacons decouvertes trop tard.</p>
-                  <p>Et vous, au milieu, a gerer un chantier qui n&apos;est pas votre metier.</p>
-                </div>
-              </Reveal>
+            {/* Texte — 7 cols */}
+            <div className="lg:col-span-7">
+              <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">La solution</p>
+              <h2 className="text-[clamp(2rem,3.5vw,3.5rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0A0E12]" style={clashDisplay}>
+                Un seul numéro.<br />Une seule personne.<br />Zéro zone d&apos;ombre.
+              </h2>
+              <p className="mt-8 text-[clamp(0.95rem,1.1vw,1.1rem)] leading-[1.7] text-[rgba(10,14,18,0.55)] max-w-lg">
+                Ingenium conçoit votre projet, sélectionne et pilote les artisans,
+                suit chaque ligne du budget et vous rend compte chaque semaine.
+                Vous gardez le contrôle — sans subir le chaos.
+              </p>
+              <div className="mt-10 space-y-0 border-t border-[rgba(10,14,18,0.08)]">
+                {[
+                  { label: "Budget contractuel", detail: "Engagement écrit avant démarrage" },
+                  { label: "Délais garantis", detail: "Pénalités de retard à notre charge" },
+                  { label: "Transparence totale", detail: "Accès à tous les devis et factures" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between py-4 border-b border-[rgba(10,14,18,0.06)]">
+                    <span className="text-[0.88rem] font-medium text-[#0A0E12]">{item.label}</span>
+                    <span className="text-[0.75rem] text-[rgba(10,14,18,0.45)]">{item.detail}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/contact" className="mt-10 inline-flex items-center gap-3 text-[0.73rem] font-semibold tracking-[0.12em] uppercase text-[#B5432A] group">
+                Discuter de mon projet
+                <svg width="16" height="8" viewBox="0 0 16 8" fill="none" className="transition-transform duration-300 group-hover:translate-x-1.5">
+                  <path d="M0 4h14M11 1l3 3-3 3" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
             </div>
-            <div>
-              <Reveal>
-                <p className="text-[0.8rem] uppercase tracking-[0.2em] text-accent mb-6">La solution</p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.15] mb-8">
-                  Un seul interlocuteur.<br />
-                  <span className="font-serif italic">Tout est pilote.</span>
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="space-y-4 text-muted leading-relaxed">
-                  <p>Ingenium coordonne chaque corps de metier. Vous ne gerez rien.</p>
-                  <p>Budget verrouille avant le premier coup de pioche. Delais contractuels. Controle qualite a chaque etape.</p>
-                  <p>Vous suivez l&apos;avancement. Nous gerons le reste.</p>
-                </div>
-              </Reveal>
+
+            {/* Image — 5 cols */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden border border-[rgba(10,14,18,0.06)]">
+                <Image
+                  src="/images/solution-openplan.jpg"
+                  alt="Intérieur réalisé par Ingenium — salon open plan bois et lumière naturelle"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  style={{ filter: "contrast(1.02) saturate(0.92) brightness(1.01)" }}
+                />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#B5432A]" />
+              </div>
+              <div className="mt-5 flex items-baseline gap-3">
+                <span className="text-[2.4rem] font-medium tracking-[-0.03em] text-[#0A0E12]" style={clashDisplay}>8–12%</span>
+                <span className="text-[0.78rem] text-[rgba(10,14,18,0.5)] leading-snug max-w-[160px]">d&apos;honoraires sur le montant des travaux</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          4. CE QUE VOUS GAGNEZ — FOND DARK
-          Pas des etapes (tout le monde sait que c'est en plusieurs etapes).
-          Des VRAIS avantages que les gens desirent.
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-foreground text-background">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="mb-16 lg:mb-24">
-            <Reveal>
-              <p className="text-[0.8rem] uppercase tracking-[0.2em] text-white/40 mb-6">Pourquoi Ingenium</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] max-w-2xl">
-                Ce que vous gagnez <span className="font-serif italic">concretement.</span>
+      {/* ═══════════════════════════════════════════════════
+          4. PROJETS — grille brisée avec vraies photos
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10 bg-[rgba(10,14,18,0.02)]" aria-label="Réalisations Ingenium">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-16">
+            <div>
+              <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-3 font-medium">Réalisations</p>
+              <h2 className="text-[clamp(1.8rem,3vw,3rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0A0E12]" style={clashDisplay}>
+                Des projets livrés.<br />Pas des promesses.
               </h2>
-            </Reveal>
+            </div>
+            <Link href="/realisations" className="text-[0.72rem] font-medium tracking-[0.1em] uppercase text-[rgba(10,14,18,0.5)] hover:text-[#0A0E12] transition-colors border-b border-[rgba(10,14,18,0.2)] pb-0.5 flex-shrink-0">
+              Voir tous les projets
+            </Link>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Colonne gauche : image placeholder */}
-            <ImageReveal direction="left">
-              <div className="relative aspect-[4/3] bg-white/5 overflow-hidden">
-                {/* TODO [Lamine 2026-04] : photo chantier en cours ou maison livree */}
-                <div className="w-full h-full flex items-center justify-center text-white/15">
-                  <p className="text-sm">Photo chantier</p>
+          {/* Grille brisée — asymétrique */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+
+            {/* Projet 1 — grand, 2 cols, vraie photo chantier */}
+            <div className="lg:col-span-2 group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="aspect-[16/9] lg:aspect-[2/1] relative overflow-hidden">
+                <Image
+                  src="/images/projet-terrasse-olivier.jpg"
+                  alt="Pose terrasse bois composite — Castanet-Tolosan, réalisation Ingenium"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
+                  style={{ filter: "contrast(1.03) saturate(0.9) brightness(1.0)" }}
+                />
+              </div>
+              <div className="px-5 py-4 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="cartouche">Terrasse composite + aménagement</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">85 m²</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Castanet-Tolosan</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Ingenium × 2024</span>
                 </div>
               </div>
-            </ImageReveal>
+            </div>
 
-            {/* Colonne droite : 4 avantages reels */}
-            <RevealContainer className="space-y-10 lg:pt-4">
-              {[
-                {
-                  num: "01",
-                  title: "Vous ne gerez rien",
-                  desc: "Un seul numero a appeler. Ingenium coordonne chaque artisan, chaque livraison, chaque imprévu. Vous vivez votre vie pendant qu'on construit la votre.",
-                },
-                {
-                  num: "02",
-                  title: "Vous voyez chaque euro",
-                  desc: "Budget ouvert, ligne par ligne. Chaque devis artisan est visible, chaque facture est tracee. Pas de frais caches, pas de mauvaise surprise a la livraison.",
-                },
-                {
-                  num: "03",
-                  title: "Vous savez quand vous emmenagez",
-                  desc: "Delais contractuels avec penalites a notre charge. Planning mis a jour chaque semaine. Pas de 'on verra', des dates precises.",
-                },
-                {
-                  num: "04",
-                  title: "Vous etes protege 10 ans",
-                  desc: "Garantie decennale, RC professionnelle, assurance dommage-ouvrage. Chaque artisan est assure. Votre investissement est blinde.",
-                },
-              ].map((item) => (
-                <RevealItem key={item.num}>
-                  <div className="group flex gap-6">
-                    <span className="text-3xl lg:text-4xl font-serif text-white/10 group-hover:text-accent/40 transition-colors duration-500 shrink-0 w-12">
-                      {item.num}
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-medium text-white mb-2">{item.title}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealContainer>
+            {/* Projet 2 — portrait, détail luxe */}
+            <div className="group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="aspect-[3/4] relative overflow-hidden">
+                <Image
+                  src="/images/projet-lavabo-detail.jpg"
+                  alt="Salle de bain rénovée — lavabo pierre et robinetterie laiton, réalisation Ingenium"
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  style={{ filter: "contrast(1.02) saturate(0.88) brightness(1.02)" }}
+                />
+              </div>
+              <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="cartouche">Rénovation salle de bain</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Ramonville</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Projet 3 — cuisine */}
+            <div className="group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src="/images/projet-cuisine-bois.jpg"
+                  alt="Cuisine neuve bois et blanc — réalisation Ingenium, sud toulousain"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  style={{ filter: "contrast(1.02) saturate(0.9) brightness(1.0)" }}
+                />
+              </div>
+              <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="cartouche">Cuisine neuve sur-mesure</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Labège</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Projet 4 — jardin, wide */}
+            <div className="sm:col-span-2 group relative overflow-hidden border border-[rgba(10,14,18,0.08)]">
+              <div className="aspect-[16/7] relative overflow-hidden">
+                <Image
+                  src="/images/projet-jardin-moderne.jpg"
+                  alt="Aménagement extérieur contemporain — jardin et terrasse, réalisation Ingenium"
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 640px) 100vw, 66vw"
+                  style={{ filter: "contrast(1.03) saturate(0.88) brightness(1.01)" }}
+                />
+              </div>
+              <div className="px-4 py-3.5 border-t border-[rgba(10,14,18,0.08)] bg-[#EEF0F1]">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="cartouche">Extension + aménagement extérieur</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Escalquens</span>
+                  <span className="cartouche opacity-40">·</span>
+                  <span className="cartouche">Ingenium × 2025</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          5. REALISATIONS — fond surface, grille asymetrique + ImageReveal
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-surface">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+      {/* ═══════════════════════════════════════════════════
+          5. TRANSITION — placo chantier LED, image choc
+      ═══════════════════════════════════════════════════ */}
+      <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden" aria-hidden="true">
+        <Image
+          src="/images/transition-chantier-led.jpg"
+          alt="Chantier Ingenium en cours — placo parfait, éclairage LED rasant"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          style={{ filter: "contrast(1.1) saturate(0.3) brightness(0.75)" }}
+        />
+        {/* Voile sombre pour assurer lisibilité */}
+        <div className="absolute inset-0 bg-[#0A0E12]/50" />
+
+        {/* Texte centré */}
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+          <p className="text-[clamp(1.8rem,4.5vw,4.5rem)] font-medium tracking-[-0.025em] text-[rgba(238,240,241,0.9)] text-center leading-[1.12]" style={clashDisplay}>
+            Chaque détail compte.<br />
+            <span className="text-[rgba(238,240,241,0.45)]">C&apos;est ça, la maîtrise d&apos;œuvre.</span>
+          </p>
+        </div>
+
+        {/* Annotation rouge */}
+        <div className="absolute bottom-8 right-8 lg:right-12 flex items-start gap-2 z-10">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M18 4 L7 15 M7 15 L7 10 M7 15 L12 15" stroke="#B5432A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="text-[#B5432A] text-[0.85rem] leading-tight" style={pirou}>chaque détail compte</span>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════
+          6. PROCESS — 4 étapes, photos process réelles
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="Notre méthode">
+        <div className="mx-auto max-w-[1400px]">
+
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
             <div>
-              <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Nos realisations</p></Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em]">
-                  Des maisons qui{" "}<span className="font-serif italic">racontent une histoire</span>
-                </h2>
-              </Reveal>
-            </div>
-            <Reveal delay={0.2}>
-              <Link href="/realisations" className="inline-flex items-center gap-2 text-sm font-medium border-b border-foreground/30 hover:border-foreground pb-1 transition-colors">
-                Voir tous les projets
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-              </Link>
-            </Reveal>
-          </div>
-
-          <div className="grid md:grid-cols-12 gap-4 lg:gap-6">
-            <div className="md:col-span-7">
-              <ImageReveal direction="left">
-                <div className="group relative aspect-[4/3] bg-foreground/5 overflow-hidden cursor-pointer">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted/20"><p className="text-sm">Photo realisation</p></div>
-                  <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-foreground/80 to-transparent text-background">
-                    <p className="text-xs uppercase tracking-widest text-white/60 mb-2">[ 145 m2 ] — [ Castanet-Tolosan ] — [ 2025 ]</p>
-                    <h3 className="text-xl lg:text-2xl font-light">Villa contemporaine plain-pied</h3>
-                  </div>
-                </div>
-              </ImageReveal>
-            </div>
-            <div className="md:col-span-5 grid gap-4 lg:gap-6">
-              <ImageReveal direction="right" delay={0.2}>
-                <div className="group relative aspect-[3/2] bg-foreground/5 overflow-hidden cursor-pointer">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted/20"><p className="text-sm">Photo realisation</p></div>
-                  <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-foreground/80 to-transparent text-background">
-                    <p className="text-xs uppercase tracking-widest text-white/60 mb-1">[ 90 m2 ] — [ Ramonville ]</p>
-                    <h3 className="text-lg font-light">Renovation complete appartement</h3>
-                  </div>
-                </div>
-              </ImageReveal>
-              <ImageReveal direction="up" delay={0.35}>
-                <div className="group relative aspect-[3/2] bg-foreground/5 overflow-hidden cursor-pointer">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted/20"><p className="text-sm">Photo realisation</p></div>
-                  <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-foreground/80 to-transparent text-background">
-                    <p className="text-xs uppercase tracking-widest text-white/60 mb-1">[ +40 m2 ] — [ Labege ]</p>
-                    <h3 className="text-lg font-light">Extension bois et toit terrasse</h3>
-                  </div>
-                </div>
-              </ImageReveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          6. TEMOIGNAGES — fond blanc
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="text-center mb-16">
-            <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Temoignages</p></Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em]">
-                Ils nous ont fait <span className="font-serif italic">confiance</span>
+              <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-3 font-medium">Notre méthode</p>
+              <h2 className="text-[clamp(1.8rem,3vw,3rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0A0E12]" style={clashDisplay}>
+                Un projet bien piloté<br />est un projet livré.
               </h2>
-            </Reveal>
-          </div>
-
-          <RevealContainer className="grid md:grid-cols-3 gap-8">
-            {[
-              { quote: "Du premier rendez-vous a la remise des cles, tout etait clair et sans surprise. Le budget a ete respecte a l'euro pres.", author: "Marie et Thomas D.", project: "Villa 130m2, Castanet-Tolosan" },
-              { quote: "Ce qui nous a convaincus, c'est la transparence. On voyait chaque devis, chaque facture. Aucune zone d'ombre.", author: "Sophie et Julien R.", project: "Renovation complete, Ramonville" },
-              { quote: "Notre maitre d'oeuvre etait disponible et reactif. A chaque question, on avait une reponse dans la journee.", author: "Karim et Lea B.", project: "Extension + surelevation, Labege" },
-            ].map((t) => (
-              <RevealItem key={t.author}>
-                <div className="p-8 lg:p-10 border border-border hover:border-accent/30 transition-colors duration-500">
-                  <svg className="w-8 h-8 text-accent/40 mb-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z" />
-                  </svg>
-                  <blockquote className="text-[0.95rem] leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <div>
-                    <p className="font-medium text-sm">{t.author}</p>
-                    <p className="text-xs text-muted mt-1">{t.project}</p>
-                  </div>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealContainer>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          7. FONDATEUR — FOND DARK (contraste fort, comme 2cconcept)
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-foreground text-background">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-5">
-              <ImageReveal direction="left">
-                <div className="aspect-[3/4] bg-white/5 overflow-hidden">
-                  {/* TODO [Lamine 2026-04] : portrait Sergiu */}
-                  <div className="w-full h-full flex items-center justify-center text-white/20"><p className="text-sm">Photo Sergiu Lungu</p></div>
-                </div>
-              </ImageReveal>
             </div>
-            <div className="lg:col-span-7">
-              <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-white/40 mb-6">Le fondateur</p></Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.15] mb-8">
-                  Sergiu Lungu.
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="space-y-4 text-white/60 leading-relaxed">
-                  <p>Plus de 15 ans dans le batiment. Des dizaines de chantiers pilotes dans le sud toulousain. Une obsession : que chaque client dorme tranquille pendant ses travaux.</p>
-                  <p>Ingenium est ne d&apos;un constat simple : trop de particuliers subissent des chantiers mal coordonnes, des budgets qui explosent, des artisans qui disparaissent.</p>
-                  <p>Chaque projet est suivi personnellement. Quand vous appelez Ingenium, c&apos;est Sergiu qui decroche.</p>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          8. GARANTIES — fond blanc
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="text-center mb-16">
-            <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Vos garanties</p></Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em]">
-                Construire en toute <span className="font-serif italic">serenite</span>
-              </h2>
-            </Reveal>
+            <p className="text-[0.85rem] leading-[1.65] text-[rgba(10,14,18,0.5)] max-w-sm lg:text-right">
+              De votre premier appel à la remise des clés,
+              chaque phase est structurée, documentée et communicée.
+            </p>
           </div>
 
-          <RevealContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Layout process : étapes + images alternées */}
+          <div className="space-y-0 border-t border-[rgba(10,14,18,0.1)]">
             {[
-              { icon: "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z", title: "Garantie decennale", desc: "Vos travaux sont couverts 10 ans. Notre assurance protege la structure de votre maison." },
-              { icon: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z", title: "Budget garanti", desc: "Engagement contractuel. Devis detailles, pas de mauvaise surprise." },
-              { icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z", title: "Delais contractuels", desc: "Planning precis avec penalites de retard. Vous savez quand vous emmenagez." },
-              { icon: "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z", title: "Artisans selectionnes", desc: "Chaque artisan est reference, assure et evalue sur ses chantiers precedents." },
-              { icon: "M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155", title: "Disponibilite totale", desc: "Un referent joignable et reactif. Reporting chaque semaine." },
-              { icon: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z", title: "RC Professionnelle", desc: "Responsabilite civile couvrant l'integralite de notre mission." },
-            ].map((item) => (
-              <RevealItem key={item.title}>
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-surface border border-border">
-                    <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+              {
+                n: "01", verbe: "Écouter",
+                desc: "Rendez-vous gratuit. Vous exprimez votre projet, vos contraintes, votre budget. Nous construisons ensemble la feuille de route.",
+                img: "/images/process-blueprints.jpg",
+                imgAlt: "Plans d'architecte sur table — phase conception Ingenium",
+                side: "right"
+              },
+              {
+                n: "02", verbe: "Concevoir",
+                desc: "Plans, choix techniques, consultation des artisans, optimisation budgétaire. Chaque décision est documentée et validée avec vous.",
+                img: "/images/process-maquette.jpg",
+                imgAlt: "Maquette architecturale sur plans — phase conception Ingenium",
+                side: "left"
+              },
+              {
+                n: "03", verbe: "Piloter",
+                desc: "Coordination quotidienne. Reporting hebdomadaire. Contrôle qualité à chaque étape. Vous êtes informé, jamais surpris.",
+                img: "/images/process-chantier-equipe.jpg",
+                imgAlt: "Maîtrise d'œuvre sur chantier — suivi et coordination Ingenium",
+                side: "right"
+              },
+            ].map((step) => (
+              <div key={step.n} className={`grid lg:grid-cols-12 gap-8 lg:gap-16 items-center py-12 lg:py-16 border-b border-[rgba(10,14,18,0.08)] ${step.side === "left" ? "lg:[&>*:first-child]:order-last" : ""}`}>
+                {/* Texte */}
+                <div className="lg:col-span-5">
+                  <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.3)] mb-3 font-medium">{step.n}</span>
+                  <h3 className="text-[2rem] lg:text-[2.4rem] font-medium text-[#0A0E12] mb-5 tracking-[-0.02em]" style={clashDisplay}>{step.verbe}</h3>
+                  <p className="text-[0.88rem] leading-[1.7] text-[rgba(10,14,18,0.55)] max-w-md">{step.desc}</p>
+                </div>
+                {/* Image */}
+                <div className="lg:col-span-7">
+                  <div className="relative aspect-[16/9] overflow-hidden border border-[rgba(10,14,18,0.07)]">
+                    <Image
+                      src={step.img}
+                      alt={step.imgAlt}
+                      fill
+                      className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      style={{ filter: "contrast(1.02) saturate(0.85) brightness(1.0)" }}
+                    />
                   </div>
                 </div>
-              </RevealItem>
+              </div>
             ))}
-          </RevealContainer>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          9. ZONES — fond surface
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-surface">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Zone d&apos;intervention</p></Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.15] mb-6">
-                  Construction et renovation<br />
-                  <span className="font-serif italic">dans le sud toulousain</span>
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="text-muted leading-relaxed mb-8">
-                  PLU, contraintes de sol, artisans locaux : notre expertise terrain est votre meilleure garantie. Rayon de 30 km autour de Castanet-Tolosan.
+            {/* Étape 4 — Livrer, texte seul */}
+            <div className="py-12 lg:py-14">
+              <span className="block text-[0.6rem] tracking-[0.2em] uppercase text-[rgba(10,14,18,0.3)] mb-3 font-medium">04</span>
+              <div className="grid lg:grid-cols-2 gap-8">
+                <h3 className="text-[2rem] lg:text-[2.4rem] font-medium text-[#0A0E12] tracking-[-0.02em]" style={clashDisplay}>Livrer</h3>
+                <p className="text-[0.88rem] leading-[1.7] text-[rgba(10,14,18,0.55)] self-center">
+                  Réception contradictoire, levée des réserves, remise des documents.
+                  Votre projet est clôturé proprement, dans les délais prévus contractuellement.
                 </p>
-              </Reveal>
+              </div>
             </div>
-            <Reveal delay={0.2}>
-              <div className="flex flex-wrap gap-3">
-                {[...siteConfig.zones.tier1, ...siteConfig.zones.tier2, ...siteConfig.zones.tier3].map((zone) => (
-                  <Link key={zone} href={`/zone/${zone.toLowerCase().replace(/['\s]+/g, "-")}`} className="px-5 py-3 text-sm border border-border hover:border-accent hover:text-accent transition-colors duration-300">
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          7. TÉMOIGNAGES — citations solennelles
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10 bg-[rgba(10,14,18,0.02)]" aria-label="Avis clients">
+        <div className="mx-auto max-w-[900px]">
+          <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-12 font-medium">Ce qu&apos;ils en disent</p>
+
+          <blockquote className="border-l-2 border-[#B5432A] pl-8 mb-14">
+            <p className="text-[clamp(1.25rem,2vw,1.9rem)] font-medium leading-[1.32] tracking-[-0.015em] text-[#0A0E12]" style={clashDisplay}>
+              &ldquo;Sergiu a livré notre maison en 11 mois, comme prévu contractuellement.
+              Le budget final était inférieur au devis initial de 4 000 €.
+              Je recommande les yeux fermés.&rdquo;
+            </p>
+            <footer className="mt-6 flex items-center gap-4">
+              <div className="w-8 h-8 rounded-full bg-[rgba(10,14,18,0.08)] flex-shrink-0" />
+              <div>
+                <cite className="not-italic text-[0.82rem] font-semibold text-[#0A0E12]">Marc D.</cite>
+                <p className="text-[0.72rem] text-[rgba(10,14,18,0.45)]">Construction maison neuve — Castanet-Tolosan — 2024</p>
+              </div>
+            </footer>
+          </blockquote>
+
+          <div className="w-full h-px bg-[rgba(10,14,18,0.08)] mb-14" />
+
+          <blockquote className="border-l-2 border-[rgba(10,14,18,0.15)] pl-8">
+            <p className="text-[clamp(1.1rem,1.7vw,1.6rem)] font-medium leading-[1.32] tracking-[-0.015em] text-[#0A0E12]" style={clashDisplay}>
+              &ldquo;Avant Ingenium j&apos;avais eu deux expériences catastrophiques avec des artisans.
+              Là, pour la première fois, j&apos;ai eu un seul interlocuteur qui savait tout ce
+              qui se passait sur mon chantier. C&apos;est précieux.&rdquo;
+            </p>
+            <footer className="mt-6 flex items-center gap-4">
+              <div className="w-8 h-8 rounded-full bg-[rgba(10,14,18,0.06)] flex-shrink-0" />
+              <div>
+                <cite className="not-italic text-[0.82rem] font-semibold text-[#0A0E12]">Sophie &amp; Thomas R.</cite>
+                <p className="text-[0.72rem] text-[rgba(10,14,18,0.45)]">Rénovation complète 160 m² — Toulouse — 2025</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          8. FONDATEUR — Sergiu, photo fenêtre/vie
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="Sergiu Lungu, fondateur Ingenium">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+            {/* Image — 5 cols, photo alu fenêtre intime */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[3/4] overflow-hidden border border-[rgba(10,14,18,0.08)]">
+                <Image
+                  src="/images/detail-fenetres-alu.jpg"
+                  alt="Intérieur Ingenium — baies aluminium noir, lumière naturelle, projet livré"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  style={{ filter: "contrast(1.02) saturate(0.88) brightness(1.01)" }}
+                />
+                {/* Annotation Sergiu */}
+                <div className="absolute top-6 right-6 flex items-start gap-1.5">
+                  <span className="text-[#B5432A] text-[0.8rem]" style={pirou}>Sergiu L.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Texte — 6 cols */}
+            <div className="lg:col-span-6 lg:col-start-7">
+              <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-7 font-medium">Le fondateur</p>
+              <h2 className="text-[clamp(1.5rem,2.5vw,2.8rem)] font-medium leading-[1.1] tracking-[-0.025em] text-[#0A0E12] mb-7" style={clashDisplay}>
+                Quand vous appelez Ingenium,<br />c&apos;est Sergiu qui décroche.
+              </h2>
+              <p className="text-[0.9rem] leading-[1.75] text-[rgba(10,14,18,0.6)] max-w-lg mb-4">
+                15 ans de terrain. Des chantiers de 50 000 € à 800 000 €. Des rénovations complexes,
+                des constructions from scratch, des extensions délicates. Sergiu Lungu a tout piloté
+                avant de fonder Ingenium.
+              </p>
+              <p className="text-[0.9rem] leading-[1.75] text-[rgba(10,14,18,0.6)] max-w-lg">
+                Il ne sous-traite pas la relation client. Il ne disparaît pas après la signature.
+                Il est présent — du premier rendez-vous jusqu&apos;à la remise des clés.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                {[
+                  { val: "+80", label: "projets livrés" },
+                  { val: "15 ans", label: "d'expérience" },
+                  { val: "4.9★", label: "Google avis" },
+                ].map((stat) => (
+                  <div key={stat.label} className="px-5 py-3.5 border border-[rgba(10,14,18,0.1)]">
+                    <span className="block text-[1.5rem] font-medium tracking-[-0.02em]" style={clashDisplay}>{stat.val}</span>
+                    <span className="text-[0.65rem] tracking-[0.1em] uppercase text-[rgba(10,14,18,0.45)]">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          9. CTA FINAL — sombre, formulaire
+      ═══════════════════════════════════════════════════ */}
+      <section className="bg-[#0A0E12] py-[clamp(5rem,10vw,10rem)] px-6 lg:px-10" aria-label="Demander un devis gratuit" id="contact">
+        <div className="mx-auto max-w-[900px]">
+          <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(238,240,241,0.3)] mb-8 font-medium">Commencer</p>
+          <h2 className="text-[clamp(2rem,4vw,4rem)] font-medium leading-[1.05] tracking-[-0.025em] text-[#EEF0F1] mb-4" style={clashDisplay}>
+            Votre projet commence<br />par une conversation.
+          </h2>
+          <p className="text-[0.88rem] leading-[1.65] text-[rgba(238,240,241,0.45)] mb-12 max-w-lg">
+            Échange gratuit et sans engagement. Réponse sous 24h.
+            Sergiu vous rappelle pour comprendre votre projet.
+          </p>
+          <ContactForm variant="dark" title="" />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+          10. ZONE D'INTERVENTION — SEO local
+      ═══════════════════════════════════════════════════ */}
+      <section className="py-[clamp(4rem,8vw,8rem)] px-6 lg:px-10 border-t border-[rgba(10,14,18,0.08)]" aria-label="Zone d'intervention">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-20">
+            <div className="lg:w-64 flex-shrink-0">
+              <p className="text-[0.62rem] tracking-[0.22em] uppercase text-[rgba(10,14,18,0.4)] mb-4 font-medium">Zone d&apos;intervention</p>
+              <h2 className="text-[1.4rem] font-medium leading-[1.2] tracking-[-0.02em] text-[#0A0E12]" style={clashDisplay}>
+                Sud toulousain<br />et alentours
+              </h2>
+              <p className="mt-4 text-[0.82rem] leading-[1.65] text-[rgba(10,14,18,0.5)]">
+                Ingenium intervient dans un rayon de 30 km autour de Castanet-Tolosan.
+              </p>
+            </div>
+            <div className="flex-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-0">
+                {siteConfig.allZones().map((zone) => (
+                  <Link key={zone} href={`/zone/${zone.toLowerCase().replace(/['\s]+/g, "-")}`} className="py-2.5 text-[0.82rem] text-[rgba(10,14,18,0.55)] hover:text-[#0A0E12] transition-colors border-b border-[rgba(10,14,18,0.06)] flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-[rgba(10,14,18,0.2)] flex-shrink-0" />
                     {zone}
                   </Link>
                 ))}
               </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          10. FAQ — fond blanc
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
-              <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Questions frequentes</p></Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.15]">
-                  Vos questions,<br />
-                  <span className="font-serif italic">nos reponses</span>
-                </h2>
-              </Reveal>
             </div>
-            <RevealContainer className="divide-y divide-border">
-              {faqs.map((faq) => (
-                <RevealItem key={faq.question}>
-                  <details className="group py-6">
-                    <summary className="flex items-center justify-between cursor-pointer list-none">
-                      <h3 className="font-medium pr-8">{faq.question}</h3>
-                      <svg className="w-5 h-5 shrink-0 text-muted group-open:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                      </svg>
-                    </summary>
-                    <p className="mt-4 text-sm text-muted leading-relaxed pr-12">{faq.answer}</p>
-                  </details>
-                </RevealItem>
-              ))}
-            </RevealContainer>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          11. CTA FINAL — fond surface
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-surface">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div>
-              <Reveal><p className="text-[0.8rem] uppercase tracking-[0.2em] text-muted mb-6">Votre projet merite un premier echange</p></Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="text-3xl lg:text-5xl font-light tracking-[-0.02em] leading-[1.1] mb-6">
-                  Gratuit. Sans engagement.<br />
-                  <span className="font-serif italic">On en parle ?</span>
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="text-muted leading-relaxed mb-8 max-w-lg">
-                  Decrivez votre projet en 30 secondes. Sergiu vous rappelle sous 24h avec une premiere estimation.
-                </p>
-              </Reveal>
-              <Reveal delay={0.3}>
-                <div className="flex items-center gap-6 text-sm text-muted">
-                  {["Gratuit", "Sans engagement", "Reponse sous 24h"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-            <Reveal delay={0.2}>
-              <div className="bg-white p-8 lg:p-10 border border-border">
-                <ContactForm />
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
