@@ -409,7 +409,7 @@ export default function HomePage() {
                 desc: "Réception contradictoire, levée des réserves, remise des documents. Votre projet est clôturé proprement, dans les délais prévus contractuellement.",
                 img: "/images/process-livrer.jpg",
                 imgAlt: "Remise des clés — livraison chantier Ingenium",
-                imgPosition: "object-bottom",
+                imgPosition: "object-[center_65%]",
                 side: "left"
               },
             ].map((step) => (
@@ -449,8 +449,8 @@ export default function HomePage() {
 
             <blockquote className="border-l-2 border-[#B5432A] pl-8 mb-14">
               <p className="text-[clamp(1.25rem,2vw,1.9rem)] font-medium leading-[1.32] tracking-[-0.015em] text-[#0A0E12]" style={clashDisplay}>
-                &ldquo;Sergiu a livré notre maison en 11 mois, comme prévu contractuellement.
-                Le budget final était inférieur au devis initial de 4 000 €.
+                &ldquo;Sergiu a livré notre maison en 11 mois, dans les délais contractuels.
+                On a terminé 4 000 € sous le devis. Pas un euro de dépassement.
                 Je recommande les yeux fermés.&rdquo;
               </p>
               <footer className="mt-6 flex items-center gap-4">
